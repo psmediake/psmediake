@@ -1,4 +1,6 @@
 import type { CollectionConfig } from 'payload'
+import slugify from 'slugify'
+import { Hero } from '@/blocks/homepage/hero/schema'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -12,12 +14,22 @@ export const Pages: CollectionConfig = {
         position: 'sidebar',
       },
       required: true,
+      unique: true,
+      hooks: {
+        beforeValidate: [
+          ({ value, data }) => {
+            if (value) return slugify(value, { lower: true, strict: true })
+            if (data?.title) return slugify(data.title, { lower: true, strict: true })
+            return value
+          },
+        ],
+      },
     },
     {
       name: 'layout',
       label: 'Layout',
       type: 'blocks',
-      blocks: [],
+      blocks: [Hero],
     },
   ],
 }

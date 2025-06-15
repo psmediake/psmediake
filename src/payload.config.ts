@@ -9,6 +9,9 @@ import { s3Storage } from '@payloadcms/storage-s3'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Pages } from './collections/Pages'
+import { Articles } from './collections/Articles'
+import { Categories } from './collections/Categories'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -20,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Pages, Articles, Categories],
   // serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
   serverURL: 'http://localhost:3000',
   editor: lexicalEditor(),
