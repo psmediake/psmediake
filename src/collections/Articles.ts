@@ -8,11 +8,22 @@ export const Articles: CollectionConfig = {
   access: {
     create: ({ req }) => !!req.user,
     read: () => true,
-    update: ({ req, data }) => {
-      return req.user?.role === 'admin' || req.user?.id === data.author
+    update: (args) => {
+      const { req } = args
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const doc = (args as any).doc
+
+      return (
+        req.user?.role === 'admin' || req.user?.id === doc?.author || req.user?.role === 'editor'
+      )
     },
-    delete: ({ req, data }) => {
-      return req.user?.role === 'admin' || req.user?.id === data.author
+
+    delete: (args) => {
+      const { req } = args
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const doc = (args as any).doc
+
+      return req.user?.role === 'admin' || req.user?.id === doc.author
     },
   },
   fields: [
@@ -42,16 +53,28 @@ export const Articles: CollectionConfig = {
       relationTo: 'media',
     },
     {
-      name: 'publishedAt',
-      type: 'date',
-    },
-    {
       name: 'category',
       type: 'relationship',
       relationTo: 'categories',
       required: true,
     },
-
+    {
+      name: 'subcategory',
+      label: 'Subcategory (Optional)',
+      type: 'text',
+      required: false,
+    },
+    {
+      name: 'tags',
+      type: 'array',
+      fields: [
+        {
+          name: 'tag',
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
     {
       name: 'author',
       type: 'relationship',
@@ -59,6 +82,14 @@ export const Articles: CollectionConfig = {
       required: true,
       admin: {
         hidden: true,
+      },
+    },
+    {
+      name: 'breakingNews',
+      type: 'checkbox',
+      label: 'Breaking News',
+      admin: {
+        description: 'Check this box to mark the article as breaking news.',
       },
     },
   ],

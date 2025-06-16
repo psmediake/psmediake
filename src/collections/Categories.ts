@@ -32,12 +32,5 @@ export const Categories: CollectionConfig = {
         ],
       },
     },
-
-    {
-      name: 'parent',
-      type: 'relationship',
-      relationTo: 'categories',
-      required: false,
-    },
   ],
 }

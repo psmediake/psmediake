@@ -226,9 +226,19 @@ export interface Article {
   };
   excerpt?: string | null;
   thumbnail?: (number | null) | Media;
-  publishedAt?: string | null;
   category: number | Category;
+  subcategory?: string | null;
+  tags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
   author: number | User;
+  /**
+   * Check this box to mark the article as breaking news.
+   */
+  breakingNews?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -240,7 +250,6 @@ export interface Category {
   id: number;
   name: string;
   slug: string;
-  parent?: (number | null) | Category;
   updatedAt: string;
   createdAt: string;
 }
@@ -390,9 +399,16 @@ export interface ArticlesSelect<T extends boolean = true> {
   content?: T;
   excerpt?: T;
   thumbnail?: T;
-  publishedAt?: T;
   category?: T;
+  subcategory?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
   author?: T;
+  breakingNews?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -403,7 +419,6 @@ export interface ArticlesSelect<T extends boolean = true> {
 export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
-  parent?: T;
   updatedAt?: T;
   createdAt?: T;
 }
