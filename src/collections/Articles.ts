@@ -92,6 +92,31 @@ export const Articles: CollectionConfig = {
         description: 'Check this box to mark the article as breaking news.',
       },
     },
+    {
+      name: 'featured',
+      type: 'checkbox',
+      label: 'Featured Article',
+      admin: {
+        description: 'Check this box to feature the article on the homepage.',
+      },
+    },
+    {
+      name: 'trending',
+      type: 'checkbox',
+      label: 'Trending Article',
+      admin: {
+        description: 'Check this box to mark the article as trending.',
+      },
+    },
+
+    {
+      name: 'readTime',
+      type: 'text',
+      required: true,
+      admin: {
+        description: 'Estimated read time in minutes.',
+      },
+    },
   ],
   hooks: {
     beforeChange: [

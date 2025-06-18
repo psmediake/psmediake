@@ -239,6 +239,18 @@ export interface Article {
    * Check this box to mark the article as breaking news.
    */
   breakingNews?: boolean | null;
+  /**
+   * Check this box to feature the article on the homepage.
+   */
+  featured?: boolean | null;
+  /**
+   * Check this box to mark the article as trending.
+   */
+  trending?: boolean | null;
+  /**
+   * Estimated read time in minutes.
+   */
+  readTime: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -409,6 +421,9 @@ export interface ArticlesSelect<T extends boolean = true> {
       };
   author?: T;
   breakingNews?: T;
+  featured?: T;
+  trending?: T;
+  readTime?: T;
   updatedAt?: T;
   createdAt?: T;
 }

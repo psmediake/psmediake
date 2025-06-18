@@ -6,6 +6,12 @@ import config from '@/payload.config'
 import './styles.css'
 
 import HeroSection from '@/components/landingpage/Hero'
+import Latest from '@/components/landingpage/Latest'
+import NewsCategoriesSection from '@/components/landingpage/News'
+import SportsSection from '@/components/landingpage/Sports'
+import EntertainmentNewsSection from '@/components/landingpage/Entertainment'
+import NewsletterSignup from '@/components/landingpage/NewsLetter'
+
 export default async function HomePage() {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
@@ -26,6 +32,11 @@ export default async function HomePage() {
     <div>
       <div className="page">
         <HeroSection />
+        <Latest />
+        <NewsCategoriesSection />
+        <SportsSection />
+        <EntertainmentNewsSection />
+        <NewsletterSignup />
         {page.layout?.map((block, index) => renderBlock(block, index))}
       </div>
     </div>

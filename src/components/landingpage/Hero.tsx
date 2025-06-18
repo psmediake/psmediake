@@ -132,7 +132,7 @@ export default function NewsHeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Hero Story */}
           <div className="lg:col-span-2">
-            <div className="relative overflow-hidden rounded-xl shadow-2xl group bg-white">
+            <div className="relative overflow-hidden shadow-2xl group bg-white">
               <div className="aspect-[16/10] relative">
                 <Image
                   fill
@@ -246,7 +246,7 @@ export default function NewsHeroSection() {
 
           {/* Sidebar Stories */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="bg-white border border-[#0763fe] shadow-lg p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-gray-900">Latest Stories</h2>
                 <Link href="#" className="text-[#0763fe] text-sm font-semibold hover:underline">
