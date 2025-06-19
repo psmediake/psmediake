@@ -46,14 +46,6 @@ export default function NewsHeroSection() {
     },
   ]
 
-  // Breaking news ticker items
-  const breakingNews = [
-    'Parliament approves new infrastructure budget',
-    'Kenyan athletes prepare for upcoming international games',
-    'New renewable energy project launched in Turkana',
-    'Digital payment adoption reaches 85% nationwide',
-  ]
-
   // Side stories for the hero section
   const sideStories = [
     {
@@ -112,22 +104,6 @@ export default function NewsHeroSection() {
 
   return (
     <section className="bg-gray-50 min-h-screen">
-      {/* Breaking News Ticker */}
-      <div className="bg-[#0763fe] text-white py-3 overflow-hidden">
-        <div className="flex items-center">
-          <div className="flex-shrink-0 px-4 py-1.5 font-bold text-xs uppercase tracking-wide bg-white text-[#0763fe] rounded-full ml-4 z-10">
-            Breaking
-          </div>
-          <div className="flex animate-scroll ml-6">
-            {breakingNews.map((news, index) => (
-              <span key={index} className="flex-shrink-0 text-sm mr-12 font-medium">
-                {news}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Hero Story */}
@@ -140,7 +116,7 @@ export default function NewsHeroSection() {
                   alt={heroStories[currentSlide].title}
                   className="object-cover transition-transform duration-500 group-hover:scale-102"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-black/60" />
               </div>
 
               {/* Story Content Overlay */}
