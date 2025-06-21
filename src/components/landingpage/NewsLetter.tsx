@@ -6,7 +6,7 @@ export default function NewsletterSignup() {
   const [isSubscribed, setIsSubscribed] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (!email) return
 
@@ -257,8 +257,8 @@ export default function NewsletterSignup() {
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-2">Expert Insights</h4>
                         <p className="text-gray-600 leading-relaxed">
-                          Access exclusive content, expert analysis, and insider tips you won't find
-                          anywhere else.
+                          Access exclusive content, expert analysis, and insider tips you won{"'"}t
+                          find anywhere else.
                         </p>
                       </div>
                     </div>
