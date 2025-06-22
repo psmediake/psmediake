@@ -25,7 +25,6 @@ export default function Footer() {
         { name: 'About Us', href: '#' },
         { name: 'Our Team', href: '#' },
         { name: 'Careers', href: '#' },
-        { name: 'Press Kit', href: '#' },
         { name: 'Contact', href: '#' },
       ],
     },
@@ -43,7 +42,6 @@ export default function Footer() {
       links: [
         { name: 'Help Center', href: '#' },
         { name: 'Advertise With Us', href: '#' },
-        { name: 'RSS Feeds', href: '#' },
         { name: 'Newsletter', href: '#' },
       ],
     },
