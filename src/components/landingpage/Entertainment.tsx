@@ -1,6 +1,7 @@
 import React from 'react'
 import { Play, Star, Calendar, Clock, Users, Zap, Award, Camera } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function EntertainmentNewsSection() {
   const entertainmentNews = [
@@ -103,20 +104,16 @@ export default function EntertainmentNewsSection() {
         <div className="text-start mb-12 flex items-center justify-between border-b border-slate-200 pb-6">
           <div className="inline-flex items-center gap-3 rounded-2xl px-6 py-3 shadow-lg border border-purple-100/50 bg-white/80 backdrop-blur-sm">
             <div className="w-3 h-5 bg-gradient-to-b from-blue-900 to-orange-400 rounded-full animate-pulse"></div>
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-blue-900 bg-clip-text text-transparent">
+            <h2 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-slate-800 to-blue-900 bg-clip-text text-transparent">
               Entertainment
             </h2>
-            <div className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-blue-900 to-orange-400 rounded-full">
-              <Star className="w-3 h-3 text-white" />
-              <span className="text-xs font-bold text-white">HOT</span>
-            </div>
           </div>
           <div>
-            <a
+            <Link
               href="#"
               className="text-blue-900 inline-flex items-center gap-2 font-medium hover:scale-105 transition-all duration-300 group"
             >
-              <span>View All Entertainment</span>
+              <span>View All</span>
               <div className="w-5 h-5 rounded-full bg-purple-100 flex items-center justify-center group-hover:bg-purple-200 transition-colors">
                 <svg
                   className="w-3 h-3 group-hover:translate-x-0.5 transition-transform"
@@ -130,7 +127,7 @@ export default function EntertainmentNewsSection() {
                   />
                 </svg>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
 

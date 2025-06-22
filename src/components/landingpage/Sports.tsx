@@ -107,18 +107,13 @@ export default function SportsSection() {
             <h2 className="text-xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
               Sports
             </h2>
-            <div className="w-6 h-6 bg-orange-500/20 rounded-full flex items-center justify-center">
-              <svg className="w-3 h-3 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2L3 7v11a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V7l-7-5z" />
-              </svg>
-            </div>
           </div>
           <div>
             <a
               href="#"
               className="text-orange-400 mt-2 inline-block hover:scale-105 transition-transform duration-300 hover:text-orange-300"
             >
-              View All Sports{' '}
+              View All
               <span>
                 <svg className="inline-block w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
                   <path

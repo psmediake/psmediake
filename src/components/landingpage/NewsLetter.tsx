@@ -24,7 +24,7 @@ export default function NewsletterSignup() {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center py-8 px-4 bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <section className="flex items-center justify-center py-8 px-4 bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <div className="w-full max-w-6xl">
         <div className="bg-white/80 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl shadow-gray-200/30 overflow-hidden">
           <div className="grid lg:grid-cols-2 min-h-[500px]">
