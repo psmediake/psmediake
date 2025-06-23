@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload'
+import slugify from 'slugify'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -23,7 +24,7 @@ export const Articles: CollectionConfig = {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const doc = (args as any).doc
 
-      return req.user?.role === 'admin' || req.user?.id === doc.author
+      return req.user?.role === 'admin' || req.user?.id === doc?.author
     },
   },
   fields: [
@@ -37,6 +38,19 @@ export const Articles: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
+      admin: {
+        position: 'sidebar',
+        description: 'The slug is automatically generated from the title if left empty.',
+      },
+      hooks: {
+        beforeValidate: [
+          ({ value, data }) => {
+            if (value) return slugify(value, { lower: true, strict: true })
+            if (data?.title) return slugify(data.title, { lower: true, strict: true })
+            return value
+          },
+        ],
+      },
     },
     {
       name: 'content',

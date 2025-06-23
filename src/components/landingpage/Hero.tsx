@@ -1,262 +1,241 @@
 'use client'
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
+import Autoplay from 'embla-carousel-autoplay'
 
-export default function NewsHeroSection() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  // Featured news stories for hero carousel
-  const heroStories = [
-    {
-      id: 1,
-      title: "Kenya's Economic Growth Reaches New Heights in 2025",
-      excerpt:
-        'The latest economic indicators show promising signs of recovery and expansion across key sectors, with technology and agriculture leading the charge.',
-      category: 'Business',
-      author: 'Sarah Wanjiku',
-      publishedAt: '2 hours ago',
-      readTime: '4 min read',
-      image:
-        'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2339&q=80',
-    },
-    {
-      id: 2,
-      title: 'Revolutionary Tech Startup from Nairobi Goes Global',
-      excerpt:
-        'Local innovation meets international markets as Kenyan entrepreneurs showcase their cutting-edge solutions on the world stage.',
-      category: 'Technology',
-      author: 'David Kimani',
-      publishedAt: '4 hours ago',
-      readTime: '3 min read',
-      image:
-        'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-    },
-    {
-      id: 3,
-      title: "Cultural Festival Celebrates Kenya's Rich Heritage",
-      excerpt:
-        'Communities across the country come together to showcase traditional arts, music, and crafts in a spectacular celebration of diversity.',
-      category: 'Culture',
-      author: "Grace Nyong'o",
-      publishedAt: '6 hours ago',
-      readTime: '5 min read',
-      image:
-        'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-    },
-  ]
-
-  // Side stories for the hero section
-  const sideStories = [
-    {
-      id: 4,
-      title: 'Climate Change Impact on East African Agriculture',
-      category: 'Environment',
-      author: 'Michael Ochieng',
-      publishedAt: '8 hours ago',
-      image:
-        'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
-    },
-    {
-      id: 5,
-      title: 'Healthcare Innovation in Rural Kenya',
-      category: 'Health',
-      author: 'Dr. Janet Mwangi',
-      publishedAt: '10 hours ago',
-      image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
-    },
-    {
-      id: 6,
-      title: 'Education Reform Shows Promising Results',
-      category: 'Education',
-      author: 'Peter Kamau',
-      publishedAt: '12 hours ago',
-      image:
-        'https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
-    },
-    {
-      id: 7,
-      title: 'Tourism Sector Shows Strong Recovery',
-      category: 'Tourism',
-      author: 'Mary Akinyi',
-      publishedAt: '14 hours ago',
-      image:
-        'https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
-    },
-  ]
-
-  // Auto-advance carousel
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroStories.length)
-    }, 6000)
-    return () => clearInterval(timer)
-  }, [heroStories.length])
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroStories.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroStories.length) % heroStories.length)
-  }
+export default function NewsHeroSection({ posts }: { posts: any[] }) {
+  const featured = posts.filter((post) => post.featured)
+  const sideStories = posts.slice(0, 6)
 
   return (
-    <section className="bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Hero Story */}
-          <div className="lg:col-span-2">
-            <div className="relative overflow-hidden shadow-2xl group bg-white">
-              <div className="aspect-[16/10] relative">
-                <Image
-                  fill
-                  src={heroStories[currentSlide].image}
-                  alt={heroStories[currentSlide].title}
-                  className="object-cover transition-transform duration-500 group-hover:scale-102"
-                />
-                <div className="absolute inset-0 bg-black/60" />
-              </div>
-
-              {/* Story Content Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8 text-white">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="px-3 py-1.5 bg-[#0763fe] text-xs font-bold uppercase tracking-wide rounded-md">
-                    {heroStories[currentSlide].category}
-                  </span>
-                  <div className="flex items-center gap-2 text-sm text-gray-200">
-                    <span>{heroStories[currentSlide].publishedAt}</span>
-                    <span>•</span>
-                    <span>{heroStories[currentSlide].readTime}</span>
-                  </div>
-                </div>
-
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 leading-tight">
-                  <a href="#" className="hover:text-blue-300 transition-colors duration-200">
-                    {heroStories[currentSlide].title}
-                  </a>
-                </h1>
-
-                <p className="text-gray-200 mb-4 text-base lg:text-lg leading-relaxed line-clamp-2 max-w-2xl">
-                  {heroStories[currentSlide].excerpt}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-sm font-bold">
-                        {heroStories[currentSlide].author.charAt(0)}
-                      </span>
-                    </div>
-                    <span className="text-sm font-medium">
-                      By {heroStories[currentSlide].author}
-                    </span>
-                  </div>
-
-                  <a
-                    href="#"
-                    className="inline-flex items-center gap-2 text-sm font-semibold hover:text-blue-300 transition-colors duration-200 group"
-                  >
-                    <span>Read Full Story</span>
-                    <svg
-                      className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 opacity-0 group-hover:opacity-100"
+    <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+          {/* Main Featured Story */}
+          <div className="lg:col-span-3">
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden">
+              <Carousel
+                plugins={[
+                  Autoplay({
+                    delay: 6000,
+                  }),
+                ]}
+                className="w-full"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
+                <CarouselContent>
+                  {featured.map((post, index) => (
+                    <CarouselItem key={post.id}>
+                      <article className="group relative">
+                        {/* Full Image with Overlay */}
+                        <div className="relative h-[500px] sm:h-[550px] overflow-hidden">
+                          <Image
+                            src={typeof post.image === 'string' ? post.image : '/berlin.jpg'}
+                            alt={post.title}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                            priority={index === 0}
+                          />
 
-              <button
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 opacity-0 group-hover:opacity-100"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
+                          {/* Multi-layer gradient overlay for better text visibility */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/20" />
 
-              {/* Carousel Indicators */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2">
-                {heroStories.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      index === currentSlide ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/75 w-2'
-                    }`}
-                  />
-                ))}
-              </div>
+                          {/* Content overlay */}
+                          <div className="absolute inset-0 flex flex-col justify-end p-8">
+                            {/* Category badge */}
+                            <div className="mb-4">
+                              <span className="inline-flex items-center px-4 py-2 bg-[#0763fe] text-white text-sm font-bold uppercase tracking-wider rounded-full shadow-lg backdrop-blur-sm">
+                                {typeof post.category === 'object' &&
+                                post.category !== null &&
+                                'name' in post.category
+                                  ? post.category.name
+                                  : post.category}
+                              </span>
+                            </div>
+
+                            {/* Title */}
+                            <h1 className="xl:text-2xl font-bold mb-4 leading-tight text-white drop-shadow-2xl">
+                              <Link
+                                href="#"
+                                className="hover:text-blue-200 transition-colors duration-300"
+                              >
+                                {post.title}
+                              </Link>
+                            </h1>
+
+                            {/* Excerpt */}
+                            <p className="text-gray-100 mb-6 text-lg leading-relaxed line-clamp-2 max-w-3xl drop-shadow-lg">
+                              {post.excerpt}
+                            </p>
+
+                            {/* Meta info and CTA */}
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                              <div className="flex items-center gap-4">
+                                {/* Author */}
+                                <div className="flex items-center gap-3">
+                                  <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30">
+                                    <span className="text-lg font-bold text-white">
+                                      {typeof post.author === 'object' &&
+                                      post.author !== null &&
+                                      'name' in post.author
+                                        ? post.author.name.charAt(0)
+                                        : String(post.author).charAt(0)}
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-semibold text-white">
+                                      {typeof post.author === 'object' &&
+                                      post.author !== null &&
+                                      'name' in post.author
+                                        ? post.author.name
+                                        : post.author}
+                                    </p>
+                                    <div className="flex items-center gap-2 text-xs text-gray-200">
+                                      <span>{post.publishedAt}</span>
+                                      <span>•</span>
+                                      <span>{post.readTime} min read</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Read More Button */}
+                              <Link
+                                href="#"
+                                className="inline-flex items-center gap-3 px-6 py-3 bg-white/90 backdrop-blur-sm text-gray-900 font-semibold rounded-full hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg group/btn"
+                              >
+                                <span>Read Full Story</span>
+                                <svg
+                                  className="w-5 h-5 transition-transform group-hover/btn:translate-x-1"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                  />
+                                </svg>
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+
+                {/* Enhanced Carousel Controls */}
+                {featured.length > 1 && (
+                  <>
+                    <CarouselPrevious className="left-6 bg-white/90 backdrop-blur-sm border-white/20 text-gray-700 hover:bg-white hover:scale-110 shadow-xl transition-all duration-300" />
+                    <CarouselNext className="right-6 bg-white/90 backdrop-blur-sm border-white/20 text-gray-700 hover:bg-white hover:scale-110 shadow-xl transition-all duration-300" />
+                  </>
+                )}
+              </Carousel>
+
+              {/* Enhanced Carousel Indicators */}
+              {featured.length > 1 && (
+                <div className="flex justify-center gap-3 py-6 bg-white">
+                  {featured.map((_, index) => (
+                    <div
+                      key={index}
+                      className="w-3 h-3 rounded-full bg-gray-300 hover:bg-[#0763fe] cursor-pointer transition-all duration-300 hover:scale-125"
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Sidebar Stories */}
-          <div className="lg:col-span-1">
-            <div className="bg-white border border-[#0763fe] shadow-lg p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-gray-900">Latest Stories</h2>
-                <Link href="#" className="text-[#0763fe] text-sm font-semibold hover:underline">
-                  View All →
+          {/* Enhanced Sidebar Stories */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 p-8">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-8 pb-6 border-b-2 border-gray-100">
+                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                  <div className="w-1 h-8 bg-[#0763fe] rounded-full"></div>
+                  Latest News
+                </h2>
+                <Link
+                  href="#"
+                  className="text-[#0763fe] text-sm font-semibold hover:text-blue-700 transition-colors duration-300 flex items-center gap-2 group"
+                >
+                  <span>View All</span>
+                  <svg
+                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
                 </Link>
               </div>
 
-              <div className="space-y-5">
-                {sideStories.slice(0, 3).map((story, index) => (
-                  <article key={story.id} className="group cursor-pointer">
+              {/* Stories List */}
+              <div className="space-y-6">
+                {sideStories.map((story, index) => (
+                  <article key={story.id} className="group">
                     <Link href="#" className="block">
-                      <div className="flex gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                        <div className="relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden">
+                      <div className="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:shadow-md">
+                        {/* Enhanced image */}
+                        <div className="relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden bg-gray-100 shadow-md">
                           <Image
                             fill
-                            src={story.image}
+                            src={typeof story.image === 'string' ? story.image : '/berlin.jpg'}
                             alt={story.title}
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
                           />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                         </div>
 
+                        {/* Content */}
                         <div className="flex-1 min-w-0">
-                          <span className="inline-block px-2 py-1 bg-[#0763fe]/10 text-[#0763fe] text-xs font-semibold rounded mb-2">
-                            {story.category}
-                          </span>
+                          {/* Category with number */}
+                          <div className="flex items-center gap-3 mb-2">
+                            <span className="flex items-center justify-center w-6 h-6 bg-[#0763fe] text-white text-xs font-bold rounded-full">
+                              {index + 1}
+                            </span>
+                            <span className="inline-block px-3 py-1 bg-gray-100 text-gray-600 text-xs font-semibold rounded-full uppercase tracking-wide">
+                              {typeof story.category === 'object' &&
+                              story.category !== null &&
+                              'name' in story.category
+                                ? story.category.name
+                                : story.category}
+                            </span>
+                          </div>
 
-                          <h3 className="font-semibold text-gray-900 group-hover:text-[#0763fe] transition-colors duration-200 text-sm leading-snug line-clamp-2 mb-2">
+                          {/* Title */}
+                          <h3 className="font-bold text-gray-900 group-hover:text-[#0763fe] transition-colors duration-300 text-sm leading-snug line-clamp-2 mb-3">
                             {story.title}
                           </h3>
 
+                          {/* Meta */}
                           <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <span>{story.author}</span>
+                            <span className="truncate font-medium">
+                              {typeof story.author === 'object' &&
+                              story.author !== null &&
+                              'name' in story.author
+                                ? story.author.name
+                                : String(story.author)}
+                            </span>
                             <span>•</span>
-                            <span>{story.publishedAt}</span>
+                            <span className="whitespace-nowrap">{story.publishedAt}</span>
                           </div>
                         </div>
                       </div>
@@ -264,31 +243,46 @@ export default function NewsHeroSection() {
                   </article>
                 ))}
               </div>
+
+              {/* Enhanced Load More */}
+              <div className="mt-8 pt-6 border-t-2 border-gray-100">
+                <Link
+                  href="#"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-sm font-semibold rounded-xl hover:from-[#0763fe] hover:to-blue-600 hover:text-white transition-all duration-300 hover:shadow-lg hover:scale-[1.02] group"
+                >
+                  <span>Load More Stories</span>
+                  <svg
+                    className="w-4 h-4 transition-transform group-hover:translate-y-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(100%);
-          }
-          100% {
-            transform: translateX(-100%);
-          }
-        }
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
-        .scale-102 {
-          transform: scale(1.02);
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
       `}</style>
     </section>

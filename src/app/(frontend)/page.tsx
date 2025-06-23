@@ -6,6 +6,7 @@ import config from '@/payload.config'
 import './styles.css'
 
 import BreakingNews from '@/components/landingpage/BreakingNews'
+import NewsHeroWrapper from '@/components/Wrappers/NewsHeroWrapper'
 import HeroSection from '@/components/landingpage/Hero'
 import Latest from '@/components/landingpage/Latest'
 import NewsCategoriesSection from '@/components/landingpage/News'
@@ -33,7 +34,7 @@ export default async function HomePage() {
     <div>
       <div className="page">
         <BreakingNews />
-        <HeroSection />
+        <NewsHeroWrapper />
         <Latest />
         <NewsCategoriesSection />
         <SportsSection />

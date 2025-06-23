@@ -208,6 +208,9 @@ export interface Page {
 export interface Article {
   id: number;
   title: string;
+  /**
+   * The slug is automatically generated from the title if left empty.
+   */
   slug: string;
   content: {
     root: {
