@@ -172,7 +172,8 @@ export default function TeamsPage() {
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Our dedicated team of journalists, editors, and digital creators work tirelessly to
-            bring you accurate, timely, and compelling news coverage from around the world.
+            bring you accurate, timely, and compelling news coverage from Kenya and around the
+            world.
           </p>
         </div>
 

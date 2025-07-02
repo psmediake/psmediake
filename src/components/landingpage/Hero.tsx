@@ -192,11 +192,9 @@ export default function NewsHeroSection({ posts }: { posts: any[] }) {
                         {post.excerpt}
                       </p>
 
-                      {/* Meta info and CTA */}
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div className="flex items-center gap-4">
-                          {/* Author */}
-                          <div className="flex items-center gap-3">
+d                          <div className="flex items-center gap-3">
                             <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30">
                               <span className="text-lg font-bold text-white">
                                 {typeof post.author === 'object' &&
@@ -223,7 +221,6 @@ export default function NewsHeroSection({ posts }: { posts: any[] }) {
                           </div>
                         </div>
 
-                        {/* Read More Button */}
                         <Link
                           href="#"
                           className="inline-flex items-center gap-3 px-6 py-3 bg-white/90 backdrop-blur-sm text-gray-900 font-semibold rounded-full hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg group/btn"
