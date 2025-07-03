@@ -54,7 +54,7 @@ export default function NewsletterSignup() {
 
                   {/* Form Header */}
                   <div className="space-y-4 text-left">
-                    <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+                    <h2 className="text-3xl md:text-3xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
                       Stay Informed
                     </h2>
                     <p className="text-lg text-gray-600 leading-relaxed">

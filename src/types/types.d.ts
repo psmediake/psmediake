@@ -25,13 +25,13 @@ export interface Articles {
   slug: string
   title: string
   content: string
-  publishedDate: string
+  publishedAt: string
   excerpt?: string | null
-  thumbnail?: number | Media | null
-  category: number | Category
+  image?: string | { url: string } | null
+  category: number | { name: string } | { slug: string }
   subcategory?: string | null
-  tags?: { tag: string }[]
-  author: number | User
+  tags?: { tag: string; id?: string | null | undefined }[] | null | undefined
+  author: number | { name: string }
   breakingNews?: boolean
   featured?: boolean
   trending?: boolean

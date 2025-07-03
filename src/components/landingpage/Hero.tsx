@@ -9,124 +9,194 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
+import { Articles } from '@/types/types'
 
-export default function NewsHeroSection({ posts }: { posts: any[] }) {
+export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
   const featured = posts.filter((post) => post.featured)
-  const sideStories = posts.slice(0, 6)
+  const leftStories = posts.slice(0, 2)
+  const rightStories = posts.slice(0, 2)
 
   return (
-    <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-12">
+    <section className="bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          {/* Main Featured Story */}
-          <div className="lg:col-span-3">
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
+          {/* Left Column - Side Stories */}
+          <div className="lg:col-span-2">
+            <div className="space-y-4">
+              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-2">
+                What{"'"}s Latest
+              </h2>
+
+              {leftStories.map((post) => (
+                <article
+                  key={post.id}
+                  className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200"
+                >
+                  {/* Image */}
+                  <div className="relative h-32 overflow-hidden hidden md:block">
+                    <Image
+                      src={
+                        typeof post.image === 'object' && post.image !== null && 'url' in post.image
+                          ? post.image.url
+                          : typeof post.image === 'string'
+                            ? post.image
+                            : '/berlin.jpg'
+                      }
+                      alt={post.title}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-4 space-y-2">
+                    {/* Category */}
+                    <span className="inline-block px-2 py-1 bg-navy-100 text-navy-800 text-xs font-medium rounded">
+                      {typeof post.category === 'object' &&
+                      post.category !== null &&
+                      'name' in post.category
+                        ? post.category.name
+                        : typeof post.category === 'string' || typeof post.category === 'number'
+                          ? post.category
+                          : ''}
+                    </span>
+
+                    {/* Title */}
+                    <h3 className="text-sm font-semibold leading-tight text-gray-900 line-clamp-2">
+                      <Link
+                        href={`/news/${post.slug}`}
+                        className="hover:text-blue-600 transition-colors duration-200"
+                      >
+                        {post.title}
+                      </Link>
+                    </h3>
+
+                    {/* Meta */}
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <span className="font-medium">
+                        {typeof post.author === 'object' &&
+                        post.author !== null &&
+                        'name' in post.author
+                          ? post.author.name
+                          : post.author}
+                      </span>
+                      <span>•</span>
+                      <time dateTime={post.publishedAt}>{post.publishedAt}</time>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* Center Column - Featured Carousel */}
+          <div className="lg:col-span-3 md:mt-10">
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
               <Carousel
+                className="w-full"
                 plugins={[
                   Autoplay({
-                    delay: 6000,
+                    delay: 2000,
                   }),
                 ]}
-                className="w-full"
               >
                 <CarouselContent>
                   {featured.map((post, index) => (
                     <CarouselItem key={post.id}>
-                      <article className="group relative">
-                        {/* Full Image with Overlay */}
-                        <div className="relative h-[500px] sm:h-[550px] overflow-hidden">
+                      <article className="group">
+                        {/* Featured Image */}
+                        <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden">
                           <Image
-                            src={typeof post.image === 'string' ? post.image : '/berlin.jpg'}
+                            src={
+                              typeof post.image === 'object' &&
+                              post.image !== null &&
+                              'url' in post.image
+                                ? post.image.url
+                                : typeof post.image === 'string'
+                                  ? post.image
+                                  : '/berlin.jpg'
+                            }
                             alt={post.title}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                            className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
                             priority={index === 0}
                           />
+                        </div>
 
-                          {/* Multi-layer gradient overlay for better text visibility */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/20" />
+                        {/* Content */}
+                        <div className="p-6 space-y-3">
+                          {/* Category */}
+                          <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded">
+                            {typeof post.category === 'object' &&
+                            post.category !== null &&
+                            'name' in post.category
+                              ? post.category.name
+                              : typeof post.category === 'string' ||
+                                  typeof post.category === 'number'
+                                ? post.category
+                                : ''}
+                          </span>
 
-                          {/* Content overlay */}
-                          <div className="absolute inset-0 flex flex-col justify-end p-8">
-                            {/* Category badge */}
-                            <div className="mb-4">
-                              <span className="inline-flex items-center px-4 py-2 bg-[#0763fe] text-white text-sm font-bold uppercase tracking-wider rounded-full shadow-lg backdrop-blur-sm">
-                                {typeof post.category === 'object' &&
-                                post.category !== null &&
-                                'name' in post.category
-                                  ? post.category.name
-                                  : post.category}
-                              </span>
-                            </div>
+                          {/* Title */}
+                          <h1 className="text-lg sm:text-xl font-bold leading-tight text-gray-900">
+                            <Link
+                              href={`/news/${post.slug}`}
+                              className="hover:text-blue-600 transition-colors duration-200"
+                            >
+                              {post.title}
+                            </Link>
+                          </h1>
 
-                            {/* Title */}
-                            <h1 className="text-xl md:text-3xl xl:text-2xl font-bold mb-4 leading-tight text-white drop-shadow-2xl">
-                              <Link
-                                href="#"
-                                className="hover:text-blue-200 transition-colors duration-300"
-                              >
-                                {post.title}
-                              </Link>
-                            </h1>
+                          {/* Excerpt */}
+                          <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                            {post.excerpt}
+                          </p>
 
-                            {/* Excerpt */}
-                            <p className="text-gray-100 mb-6 text-lg leading-relaxed line-clamp-2 max-w-3xl drop-shadow-lg">
-                              {post.excerpt}
-                            </p>
-
-                            {/* Meta info and CTA */}
-                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                              <div className="flex items-center gap-4">
-                                {/* Author */}
-                                <div className="flex items-center gap-3">
-                                  <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30">
-                                    <span className="text-lg font-bold text-white">
-                                      {typeof post.author === 'object' &&
-                                      post.author !== null &&
-                                      'name' in post.author
-                                        ? post.author.name.charAt(0)
-                                        : String(post.author).charAt(0)}
-                                    </span>
-                                  </div>
-                                  <div>
-                                    <p className="text-sm font-semibold text-white">
-                                      {typeof post.author === 'object' &&
-                                      post.author !== null &&
-                                      'name' in post.author
-                                        ? post.author.name
-                                        : post.author}
-                                    </p>
-                                    <div className="flex items-center gap-2 text-xs text-gray-200">
-                                      <span>{post.publishedAt}</span>
-                                      <span>•</span>
-                                      <span>{post.readTime} min read</span>
-                                    </div>
-                                  </div>
-                                </div>
+                          {/* Meta and CTA */}
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2">
+                            <div className="flex items-center gap-2 text-xs text-gray-500">
+                              <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center">
+                                <span className="text-xs font-semibold text-gray-700">
+                                  {typeof post.author === 'object' &&
+                                  post.author !== null &&
+                                  'name' in post.author
+                                    ? post.author.name.charAt(0)
+                                    : String(post.author).charAt(0)}
+                                </span>
                               </div>
-
-                              {/* Read More Button */}
-                              <Link
-                                href="#"
-                                className="inline-flex items-center gap-3 px-6 py-3 bg-white/90 backdrop-blur-sm text-gray-900 font-semibold rounded-full hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg group/btn"
-                              >
-                                <span>Read Full Story</span>
-                                <svg
-                                  className="w-5 h-5 transition-transform group-hover/btn:translate-x-1"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                  />
-                                </svg>
-                              </Link>
+                              <span className="font-medium">
+                                {typeof post.author === 'object' &&
+                                post.author !== null &&
+                                'name' in post.author
+                                  ? post.author.name
+                                  : post.author}
+                              </span>
+                              <span>•</span>
+                              <time dateTime={post.publishedAt}>{post.publishedAt}</time>
+                              <span>•</span>
+                              <span>{post.readTime} min</span>
                             </div>
+
+                            <Link
+                              href={`/news/${post.slug}`}
+                              className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors duration-200"
+                            >
+                              Read more
+                              <svg
+                                className="w-3 h-3"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                />
+                              </svg>
+                            </Link>
                           </div>
                         </div>
                       </article>
@@ -134,113 +204,79 @@ export default function NewsHeroSection({ posts }: { posts: any[] }) {
                   ))}
                 </CarouselContent>
 
-                {/* Enhanced Carousel Controls */}
+                {/* Carousel Controls */}
                 {featured.length > 1 && (
                   <>
-                    <CarouselPrevious className="left-6 bg-white/90 backdrop-blur-sm border-white/20 text-gray-700 hover:bg-white hover:scale-110 shadow-xl transition-all duration-300" />
-                    <CarouselNext className="right-6 bg-white/90 backdrop-blur-sm border-white/20 text-gray-700 hover:bg-white hover:scale-110 shadow-xl transition-all duration-300" />
+                    <CarouselPrevious className="left-3 bg-white/90 border-gray-300 text-gray-700 hover:bg-white shadow-md" />
+                    <CarouselNext className="right-3 bg-white/90 border-gray-300 text-gray-700 hover:bg-white shadow-md" />
                   </>
                 )}
               </Carousel>
             </div>
           </div>
 
-          {/* Enhanced Sidebar Stories */}
+          {/* Right Column - Side Stories */}
           <div className="lg:col-span-2">
-            <div className="space-y-6">
-              {sideStories.map((post, index) => (
-                <article key={post.id} className="group relative">
-                  {/* Full Image with Overlay */}
-                  <div className="relative overflow-hidden">
+            <div className="space-y-4">
+              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-2">
+                Trending
+              </h2>
+
+              {rightStories.map((post) => (
+                <article
+                  key={post.id}
+                  className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200"
+                >
+                  {/* Image */}
+                  <div className="relative h-32 overflow-hidden hidden md:block">
                     <Image
-                      src={typeof post.image === 'string' ? post.image : '/berlin.jpg'}
+                      src={
+                        typeof post.image === 'object' && post.image !== null && 'url' in post.image
+                          ? post.image.url
+                          : typeof post.image === 'string'
+                            ? post.image
+                            : '/berlin.jpg'
+                      }
                       alt={post.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      priority={index === 0}
+                      className="object-cover object-top"
                     />
+                  </div>
 
-                    {/* Multi-layer gradient overlay for better text visibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/20" />
+                  {/* Content */}
+                  <div className="p-4 space-y-2">
+                    {/* Category */}
+                    <span className="inline-block px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded">
+                      {typeof post.category === 'object' &&
+                      post.category !== null &&
+                      'name' in post.category
+                        ? post.category.name
+                        : typeof post.category === 'string' || typeof post.category === 'number'
+                          ? post.category
+                          : ''}
+                    </span>
 
-                    {/* Content overlay */}
-                    <div className="absolute inset-0 flex flex-col justify-end p-8">
-                      {/* Category badge */}
-                      <div className="mb-4">
-                        <span className="inline-flex items-center px-4 py-2 bg-[#0763fe] text-white text-sm font-bold uppercase tracking-wider rounded-full shadow-lg backdrop-blur-sm">
-                          {typeof post.category === 'object' &&
-                          post.category !== null &&
-                          'name' in post.category
-                            ? post.category.name
-                            : post.category}
-                        </span>
-                      </div>
+                    {/* Title */}
+                    <h3 className="text-sm font-semibold leading-tight text-gray-900 line-clamp-2">
+                      <Link
+                        href={`/news/${post.slug}`}
+                        className="hover:text-blue-600 transition-colors duration-200"
+                      >
+                        {post.title}
+                      </Link>
+                    </h3>
 
-                      {/* Title */}
-                      <h1 className="text-xl md:text-3xl xl:text-2xl font-bold mb-4 leading-tight text-white drop-shadow-2xl">
-                        <Link
-                          href="#"
-                          className="hover:text-blue-200 transition-colors duration-300"
-                        >
-                          {post.title}
-                        </Link>
-                      </h1>
-
-                      {/* Excerpt */}
-                      <p className="text-gray-100 mb-6 text-lg leading-relaxed line-clamp-2 max-w-3xl drop-shadow-lg">
-                        {post.excerpt}
-                      </p>
-
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <div className="flex items-center gap-4">
-d                          <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30">
-                              <span className="text-lg font-bold text-white">
-                                {typeof post.author === 'object' &&
-                                post.author !== null &&
-                                'name' in post.author
-                                  ? post.author.name.charAt(0)
-                                  : String(post.author).charAt(0)}
-                              </span>
-                            </div>
-                            <div>
-                              <p className="text-sm font-semibold text-white">
-                                {typeof post.author === 'object' &&
-                                post.author !== null &&
-                                'name' in post.author
-                                  ? post.author.name
-                                  : post.author}
-                              </p>
-                              <div className="flex items-center gap-2 text-xs text-gray-200">
-                                <span>{post.publishedAt}</span>
-                                <span>•</span>
-                                <span>{post.readTime} min read</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <Link
-                          href="#"
-                          className="inline-flex items-center gap-3 px-6 py-3 bg-white/90 backdrop-blur-sm text-gray-900 font-semibold rounded-full hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg group/btn"
-                        >
-                          <span>Read Full Story</span>
-                          <svg
-                            className="w-5 h-5 transition-transform group-hover/btn:translate-x-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17 8l4 4m0 0l-4 4m4-4H3"
-                            />
-                          </svg>
-                        </Link>
-                      </div>
+                    {/* Meta */}
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <span className="font-medium">
+                        {typeof post.author === 'object' &&
+                        post.author !== null &&
+                        'name' in post.author
+                          ? post.author.name
+                          : post.author}
+                      </span>
+                      <span>•</span>
+                      <time dateTime={post.publishedAt}>{post.publishedAt}</time>
                     </div>
                   </div>
                 </article>
@@ -262,6 +298,12 @@ d                          <div className="flex items-center gap-3">
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
+        }
+        .bg-navy-100 {
+          background-color: #e0e7ff;
+        }
+        .text-navy-800 {
+          color: #1e40af;
         }
       `}</style>
     </section>

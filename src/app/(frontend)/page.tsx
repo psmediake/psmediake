@@ -7,11 +7,10 @@ import './styles.css'
 
 import BreakingNews from '@/components/landingpage/BreakingNews'
 import NewsHeroWrapper from '@/components/Wrappers/NewsHeroWrapper'
-import HeroSection from '@/components/landingpage/Hero'
-import Latest from '@/components/landingpage/Latest'
-import NewsCategoriesSection from '@/components/landingpage/News'
-import SportsSection from '@/components/landingpage/Sports'
-import EntertainmentNewsSection from '@/components/landingpage/Entertainment'
+import LatestNewsWrapper from '@/components/Wrappers/LatestNewsWrapper'
+import NewsSectionWrapper from '@/components/Wrappers/NewsSectionWrapper'
+import SportsSectionWrapper from '@/components/Wrappers/SportsSectionWrapper'
+import EntertainmentSectionWrapper from '@/components/Wrappers/EntertainmentSectionWrapper'
 import NewsletterSignup from '@/components/landingpage/NewsLetter'
 
 export default async function HomePage() {
@@ -35,10 +34,10 @@ export default async function HomePage() {
       <div className="page">
         <BreakingNews />
         <NewsHeroWrapper />
-        <Latest />
-        <NewsCategoriesSection />
-        <SportsSection />
-        <EntertainmentNewsSection />
+        <LatestNewsWrapper />
+        <NewsSectionWrapper />
+        <SportsSectionWrapper />
+        <EntertainmentSectionWrapper />
         <NewsletterSignup />
         {page.layout?.map((block, index) => renderBlock(block, index))}
       </div>

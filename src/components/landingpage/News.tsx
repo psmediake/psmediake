@@ -2,105 +2,15 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Articles } from '@/types/types'
 
-export default function NewsCategoriesSection() {
-  const newsArticles = [
-    {
-      id: 1,
-      title: 'President Announces New Economic Recovery Plan',
-      excerpt:
-        'Comprehensive strategy aimed at boosting employment and supporting small businesses across the country.',
-      author: 'John Kamau',
-      publishedAt: '2 hours ago',
-      readTime: '4 min read',
-      image:
-        'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      trending: true,
-    },
-    {
-      id: 2,
-      title: 'Kenyan Startup Raises $50M in Series B Funding',
-      excerpt:
-        'Fintech company plans to expand operations across East Africa with the new investment.',
-      author: 'Sarah Wanjiku',
-      publishedAt: '3 hours ago',
-      readTime: '3 min read',
-      image:
-        'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      trending: false,
-    },
-    {
-      id: 3,
-      title: 'AI Revolution Transforms Healthcare in Rural Areas',
-      excerpt:
-        'Machine learning algorithms help diagnose diseases in remote communities with limited medical resources.',
-      author: 'David Omondi',
-      publishedAt: '4 hours ago',
-      readTime: '5 min read',
-      image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      trending: true,
-    },
-    {
-      id: 4,
-      title: 'Kenya Qualifies for World Cup After Dramatic Victory',
-      excerpt:
-        'National team secures spot in Qatar with last-minute goal in thrilling match against rivals.',
-      author: "Michael Nyong'o",
-      publishedAt: '5 hours ago',
-      readTime: '2 min read',
-      image:
-        'https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      trending: true,
-    },
-    {
-      id: 5,
-      title: 'New Vaccination Campaign Launches Nationwide',
-      excerpt:
-        'Government initiates comprehensive immunization program targeting preventable diseases.',
-      author: 'Dr. Grace Mwangi',
-      publishedAt: '6 hours ago',
-      readTime: '4 min read',
-      image:
-        'https://images.unsplash.com/photo-1584515933487-779824d29309?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      trending: false,
-    },
-    {
-      id: 6,
-      title: 'University Enrollment Hits Record High',
-      excerpt:
-        'More students than ever are pursuing higher education as new programs and scholarships are introduced.',
-      author: 'Peter Kimani',
-      publishedAt: '7 hours ago',
-      readTime: '3 min read',
-      image:
-        'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      trending: false,
-    },
-    {
-      id: 7,
-      title: 'Solar Energy Project Powers 100,000 Homes',
-      excerpt: 'Massive renewable energy initiative brings clean electricity to rural communities.',
-      author: 'Mary Akinyi',
-      publishedAt: '8 hours ago',
-      readTime: '4 min read',
-      image:
-        'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      trending: false,
-    },
-    {
-      id: 8,
-      title: 'Parliament Passes New Anti-Corruption Bill',
-      excerpt:
-        'Landmark legislation strengthens oversight and introduces stricter penalties for public officials.',
-      author: 'James Ochieng',
-      publishedAt: '9 hours ago',
-      readTime: '5 min read',
-      image:
-        'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      trending: false,
-    },
-  ]
+export default function NewsCategoriesSection({ posts }: { posts: Articles[] }) {
+  const newsPosts = posts.filter((post) => {
+    if (typeof post.category === 'object' && 'name' in post.category) {
+      return post.category.name === 'News'
+    }
+    return false
+  })
 
   return (
     <section className="bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-6">
@@ -134,7 +44,7 @@ export default function NewsCategoriesSection() {
 
         {/* News Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {newsArticles.slice(0, 6).map((article, index) => (
+          {newsPosts.slice(0, 6).map((article, index) => (
             <article
               key={article.id}
               className="group"
@@ -146,7 +56,15 @@ export default function NewsCategoriesSection() {
                   <div className="relative aspect-[16/9] overflow-hidden">
                     <Image
                       fill
-                      src={article.image}
+                      src={
+                        typeof article.image === 'object' &&
+                        article.image !== null &&
+                        'url' in article.image
+                          ? article.image.url
+                          : typeof article.image === 'string'
+                            ? article.image
+                            : '/berlin.jpg'
+                      }
                       alt={article.title}
                       className="object-cover transition-all duration-700 group-hover:scale-110"
                     />
@@ -198,10 +116,20 @@ export default function NewsCategoriesSection() {
                       <div className="flex items-center gap-2.5">
                         <div className="w-7 h-7 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-sm">
                           <span className="text-xs font-bold text-white">
-                            {article.author.charAt(0)}
+                            {typeof article.author === 'object' &&
+                            article.author !== null &&
+                            'name' in article.author
+                              ? String(article.author.name).charAt(0)
+                              : String(article.author).charAt(0)}
                           </span>
                         </div>
-                        <span className="text-sm font-medium text-slate-700">{article.author}</span>
+                        <span className="text-sm font-medium text-slate-700">
+                          {typeof article.author === 'object' &&
+                          article.author !== null &&
+                          'name' in article.author
+                            ? String(article.author.name)
+                            : String(article.author)}
+                        </span>
                       </div>
 
                       <div className="flex items-center gap-1 text-blue-600 text-sm font-medium group-hover:gap-2 transition-all duration-300">

@@ -133,7 +133,7 @@ export default function DualNavbar() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`font-medium text-sm px-4 py-2 rounded-lg transition-all duration-200 ${
+                    className={`font-medium text-xs px-4 py-2 rounded-lg transition-all duration-200 uppercase ${
                       index === 0
                         ? 'bg-[#0763fe] text-white hover:bg-blue-700 shadow-sm'
                         : 'text-gray-700 hover:text-[#0763fe] hover:bg-gray-50'
