@@ -8,8 +8,8 @@ export default function Latest({ posts }: { posts: Articles[] }) {
   const latestStories = posts.slice(0, 4)
 
   return (
-    <section className="bg-gray-900 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:max-w-max 2xl:px-40">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {latestStories.map((post) => (
             <article key={post.id} className="group">

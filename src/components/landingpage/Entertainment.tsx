@@ -15,7 +15,7 @@ export default function EntertainmentNewsSection({ posts }: { posts: Articles[] 
 
   return (
     <section className="bg-gradient-to-br from-slate-50 via-white to-purple-50/30 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:max-w-max 2xl:px-40">
         {/* Section Header */}
         <div className="text-start mb-12 flex items-center justify-between border-b border-slate-200 pb-6">
           <div className="inline-flex items-center gap-3 rounded-2xl px-6 py-3 shadow-lg border border-purple-100/50 bg-white/80 backdrop-blur-sm">

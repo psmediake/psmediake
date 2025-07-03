@@ -56,7 +56,7 @@ export default function BreakingNews() {
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-pulse"></div>
         </div>
 
-        <div className="relative z-10 flex items-center justify-between py-3 px-4 max-w-7xl mx-auto">
+        <div className="relative z-10 flex items-center justify-between py-3 px-4 max-w-7xl mx-auto ">
           {/* Left side - Breaking badge and content */}
           <div className="flex items-center flex-1 min-w-0">
             {/* Enhanced breaking badge */}

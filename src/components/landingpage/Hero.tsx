@@ -18,7 +18,7 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
 
   return (
     <section className="bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl 2xl:max-w-max mx-auto px-4 sm:px-6 lg:px-8 2xl:px-40">
         <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
           {/* Left Column - Side Stories */}
           <div className="lg:col-span-2">
@@ -64,7 +64,15 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
                     {/* Title */}
                     <h3 className="text-sm font-semibold leading-tight text-gray-900 line-clamp-2">
                       <Link
-                        href={`/news/${post.slug}`}
+                        href={`/${
+                          typeof post.category === 'object' &&
+                          post.category !== null &&
+                          'slug' in post.category
+                            ? post.category.slug
+                            : typeof post.category === 'string' || typeof post.category === 'number'
+                              ? post.category
+                              : 'news'
+                        }/${post.slug}`}
                         className="hover:text-blue-600 transition-colors duration-200"
                       >
                         {post.title}
@@ -140,7 +148,16 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
                           {/* Title */}
                           <h1 className="text-lg sm:text-xl font-bold leading-tight text-gray-900">
                             <Link
-                              href={`/news/${post.slug}`}
+                              href={`/${
+                                typeof post.category === 'object' &&
+                                post.category !== null &&
+                                'slug' in post.category
+                                  ? post.category.slug
+                                  : typeof post.category === 'string' ||
+                                      typeof post.category === 'number'
+                                    ? post.category
+                                    : 'news'
+                              }/${post.slug}`}
                               className="hover:text-blue-600 transition-colors duration-200"
                             >
                               {post.title}
@@ -259,7 +276,15 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
                     {/* Title */}
                     <h3 className="text-sm font-semibold leading-tight text-gray-900 line-clamp-2">
                       <Link
-                        href={`/news/${post.slug}`}
+                        href={`/${
+                          typeof post.category === 'object' &&
+                          post.category !== null &&
+                          'slug' in post.category
+                            ? post.category.slug
+                            : typeof post.category === 'string' || typeof post.category === 'number'
+                              ? post.category
+                              : 'news'
+                        }/${post.slug}`}
                         className="hover:text-blue-600 transition-colors duration-200"
                       >
                         {post.title}

@@ -57,19 +57,27 @@ export async function fetchAllPosts(page = 1, limit = 9) {
   }
 }
 
-export async function fetchRelatedPosts(currentCategory: string) {
+export async function fetchRelatedPosts(currentCategory: { name: string }, currentSlug: string) {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
+
   const { docs: allBlogs } = await payload.find({
     collection: 'articles',
     depth: 1,
     limit: 4,
     where: {
-      category: {
-        equals: {
-          category: currentCategory,
+      and: [
+        {
+          'category.name': {
+            equals: currentCategory.name,
+          },
         },
-      },
+        {
+          slug: {
+            not_equals: currentSlug, // Exclude the current article
+          },
+        },
+      ],
     },
   })
 

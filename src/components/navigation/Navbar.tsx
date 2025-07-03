@@ -19,7 +19,7 @@ export default function DualNavbar() {
   }
 
   const navLinks = [
-    { name: 'Home', href: '#' },
+    { name: 'Home', href: '/' },
     { name: 'News', href: '#' },
     { name: 'Entertainment', href: '#' },
     { name: 'Politics', href: '#' },
@@ -117,7 +117,7 @@ export default function DualNavbar() {
             {/* Left Side - Logo and Navigation */}
             <div className="flex items-center space-x-8">
               {/* Logo */}
-              <Link href="#" className="flex-shrink-0">
+              <Link href="/" className="flex-shrink-0">
                 <Image
                   src="/logoblue.png"
                   alt="Logo"

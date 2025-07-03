@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -123,5 +123,184 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Slab', sans-serif;
+}
+
+.richtext {
+  font-family: "Roboto Slab", Georgia, sans-serif;
+  color: #121212;
+  line-height: 1.75;
+  font-size: 1.05rem;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Headings */
+.richtext h1,
+.richtext h2,
+.richtext h3,
+.richtext h4 {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+  color: #0763fe;
+}
+
+.richtext h1 {
+  font-size: 2.25rem;
+}
+
+.richtext h2 {
+  font-size: 1.75rem;
+  color: #121212;
+}
+
+.richtext h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.richtext h4 {
+  font-size: 1.2rem;
+  color: #444;
+  text-transform: uppercase;
+}
+
+/* Paragraphs */
+.richtext p {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.richtext p:first-of-type::first-letter {
+  font-size: 2.8em;
+  float: left;
+  line-height: 1;
+  padding-right: 0.1em;
+  font-weight: bold;
+  color: #0763fe;
+}
+
+/* Links */
+.richtext a {
+  color: #005689;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.richtext a:hover {
+  color: #0a5fb4;
+}
+
+/* Lists */
+.richtext ul,
+.richtext ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.richtext li {
+  margin-bottom: 0.75rem;
+}
+
+/* Blockquotes */
+.richtext blockquote {
+  border-left: 4px solid #dcdcdc;
+  padding-left: 1rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #555;
+}
+
+/* Code */
+.richtext code {
+  font-family: Consolas, Monaco, monospace;
+  background: #f3f3f3;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.95em;
+}
+
+.richtext pre {
+  background: #f6f6f6;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+  margin: 2rem 0;
+}
+
+/* Images */
+.richtext img {
+  max-width: 100%;
+  margin: 2rem 0;
+  border-radius: 4px;
+}
+
+/* Figure and Caption */
+.richtext figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.richtext figcaption {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Horizontal Rule */
+.richtext hr {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 2.5rem 0;
+}
+
+/* Tables */
+.richtext table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+}
+
+.richtext th,
+.richtext td {
+  border: 1px solid #e0e0e0;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.richtext th {
+  background-color: #f3f3f3;
+  font-weight: 600;
+}
+
+/* Emphasis */
+.richtext strong {
+  font-weight: bold;
+}
+
+.richtext em {
+  font-style: italic;
+}
+
+/* Print style */
+@media print {
+  .richtext {
+    color: #000;
+    background: none;
+  }
+
+  .richtext a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .richtext blockquote {
+    border-color: #000;
+  }
 }

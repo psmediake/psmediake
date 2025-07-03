@@ -27,7 +27,7 @@ export default function SportsSection({ posts }: { posts: Articles[] }) {
 
   return (
     <section className="bg-gradient-to-br from-gray-900 to-gray-900 py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:max-w-max 2xl:px-40">
         {/* Section Header */}
         <div className="text-start mb-12 flex items-center justify-between border-b border-gray-700 pb-4">
           <div className="inline-flex items-center gap-3 rounded-2xl px-4 py-2 bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30">
