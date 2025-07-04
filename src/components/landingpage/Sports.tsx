@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Articles } from '@/types/types'
 import EmptyState from './EmptyState'
+import Link from 'next/link'
 
 export default function SportsSection({ posts }: { posts: Articles[] }) {
   const sportsPosts = posts.filter((post) => {
@@ -80,7 +81,19 @@ export default function SportsSection({ posts }: { posts: Articles[] }) {
                   className="group"
                   style={{ animationDelay: `${index * 150}ms` }}
                 >
-                  <a href="#" className="block">
+                  <Link
+                    href={`/${
+                      typeof article.category === 'object' &&
+                      article.category !== null &&
+                      'slug' in article.category
+                        ? article.category.slug
+                        : typeof article.category === 'string' ||
+                            typeof article.category === 'number'
+                          ? article.category
+                          : 'news'
+                    }/${article.slug}`}
+                    className="block"
+                  >
                     <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-sm shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-white/50 hover:border-[#0763fe]/80 hover:-translate-y-1 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90">
                       {/* Image */}
                       <div className="relative aspect-[16/9] overflow-hidden">
@@ -189,7 +202,7 @@ export default function SportsSection({ posts }: { posts: Articles[] }) {
                         </div>
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 </article>
               ))}
             </div>

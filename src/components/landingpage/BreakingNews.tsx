@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import { Articles } from '@/types/types'
+import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 
 export default function BreakingNews({ posts }: { posts: Articles[] }) {
@@ -59,7 +61,20 @@ export default function BreakingNews({ posts }: { posts: Articles[] }) {
                 {/* News text with smooth transition */}
                 <div className="flex-1 min-w-0 relative">
                   <p className="text-sm md:text-base font-medium truncate transition-all duration-500 ease-in-out">
-                    {breakingNews[currentIndex].title}
+                    <Link
+                      href={`/${
+                        typeof breakingNews[currentIndex].category === 'object' &&
+                        breakingNews[currentIndex].category !== null &&
+                        'slug' in breakingNews[currentIndex].category
+                          ? (breakingNews[currentIndex].category as any).slug
+                          : typeof breakingNews[currentIndex].category === 'string' ||
+                              typeof breakingNews[currentIndex].category === 'number'
+                            ? breakingNews[currentIndex].category
+                            : 'news'
+                      }/${breakingNews[currentIndex].slug}`}
+                    >
+                      {breakingNews[currentIndex].title}
+                    </Link>
                   </p>
                 </div>
 

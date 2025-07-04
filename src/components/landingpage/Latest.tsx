@@ -13,7 +13,18 @@ export default function Latest({ posts }: { posts: Articles[] }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {latestStories.map((post) => (
             <article key={post.id} className="group">
-              <Link href="#" className="block">
+              <Link
+                href={`/${
+                  typeof post.category === 'object' &&
+                  post.category !== null &&
+                  'slug' in post.category
+                    ? post.category.slug
+                    : typeof post.category === 'string' || typeof post.category === 'number'
+                      ? post.category
+                      : 'news'
+                }/${post.slug}`}
+                className="block"
+              >
                 <div className="bg-white hover:bg-gray-50 transition-all duration-300 overflow-hidden border-2 border-white hover:border-[#0763fe]/30">
                   {/* Image */}
                   <div className="relative aspect-[16/9] overflow-hidden">

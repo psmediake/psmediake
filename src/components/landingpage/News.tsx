@@ -50,8 +50,19 @@ export default function NewsCategoriesSection({ posts }: { posts: Articles[] }) 
               className="group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <Link href="#" className="block">
-                <div className="bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-[#0763fe]/50 hover:border-blue-200/50 hover:-translate-y-2 hover:bg-white">
+              <Link
+                href={`/${
+                  typeof article.category === 'object' &&
+                  article.category !== null &&
+                  'slug' in article.category
+                    ? article.category.slug
+                    : typeof article.category === 'string' || typeof article.category === 'number'
+                      ? article.category
+                      : 'news'
+                }/${article.slug}`}
+                className="block"
+              >
+                <div className="bg-white/80 md:h-[80vh] 2xl:h-[60vh] backdrop-blur-sm shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-[#0763fe]/50 hover:border-blue-200/50 hover:-translate-y-2 hover:bg-white">
                   {/* Image */}
                   <div className="relative aspect-[16/9] overflow-hidden">
                     <Image
