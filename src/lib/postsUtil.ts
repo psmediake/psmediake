@@ -1,7 +1,7 @@
 import config from '@/payload.config'
 import { getPayload } from 'payload'
 
-export async function fetchAllPosts(page = 1, limit = 9) {
+export async function fetchAllPosts(page = 1, limit = 18) {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
 
