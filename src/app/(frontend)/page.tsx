@@ -5,7 +5,7 @@ import React from 'react'
 import config from '@/payload.config'
 import './styles.css'
 
-import BreakingNews from '@/components/landingpage/BreakingNews'
+import BreakingSectionWrapper from '@/components/Wrappers/BreakingSectionWrapper'
 import NewsHeroWrapper from '@/components/Wrappers/NewsHeroWrapper'
 import LatestNewsWrapper from '@/components/Wrappers/LatestNewsWrapper'
 import NewsSectionWrapper from '@/components/Wrappers/NewsSectionWrapper'
@@ -32,7 +32,7 @@ export default async function HomePage() {
   return (
     <div>
       <div className="page">
-        <BreakingNews />
+        <BreakingSectionWrapper />
         <NewsHeroWrapper />
         <LatestNewsWrapper />
         <NewsSectionWrapper />
