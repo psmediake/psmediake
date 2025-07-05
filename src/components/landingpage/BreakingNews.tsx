@@ -7,21 +7,21 @@ import React, { useState, useEffect } from 'react'
 export default function BreakingNews({ posts }: { posts: Articles[] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
-  const breakingNews = posts.slice(0, 6)
+  const breakingNews = posts.filter((post) => post.breakingNews === true).slice(0, 6)
 
   // Auto-rotate news items
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % posts.length)
+      setCurrentIndex((prev) => (prev + 1) % breakingNews.length)
     }, 4000)
     return () => clearInterval(interval)
-  }, [posts.length])
+  }, [breakingNews.length])
 
   const handleClose = () => {
     setIsVisible(false)
   }
 
-  if (!isVisible) return null
+  if (!isVisible || breakingNews.length === 0) return null
 
   return (
     <section className="relative">

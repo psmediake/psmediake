@@ -5,13 +5,13 @@ import Link from 'next/link'
 import { Articles } from '@/types/types'
 
 export default function Latest({ posts }: { posts: Articles[] }) {
-  const latestStories = posts.slice(0, 4)
+  const breakingNews = posts.filter((post) => post.breakingNews === true).slice(0, 8)
 
   return (
     <section className="py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:max-w-max 2xl:px-40">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {latestStories.map((post) => (
+          {breakingNews.map((post) => (
             <article key={post.id} className="group">
               <Link
                 href={`/${

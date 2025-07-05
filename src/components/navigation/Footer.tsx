@@ -11,29 +11,29 @@ export default function Footer() {
     content: {
       title: 'Content',
       links: [
-        { name: 'Latest News', href: '#' },
-        { name: 'Entertainment', href: '#' },
-        { name: 'Politics', href: '#' },
-        { name: 'Sports', href: '#' },
-        { name: 'Business', href: '#' },
-        { name: 'Technology', href: '#' },
+        { name: 'Latest News', href: '/latest-stories' },
+        { name: 'Entertainment', href: '/entertainment' },
+        { name: 'Politics', href: '/politics' },
+        { name: 'Sports', href: '/sports' },
+        { name: 'Business', href: '/business' },
+        { name: 'Technology', href: '/technology' },
       ],
     },
     company: {
       title: 'Company',
       links: [
-        { name: 'About Us', href: '#' },
-        { name: 'Our Team', href: '#' },
+        { name: 'About Us', href: '/about-us' },
+        { name: 'Our Team', href: '/team' },
         { name: 'Careers', href: '#' },
-        { name: 'Contact', href: '#' },
+        { name: 'Contact', href: '/contact-us' },
       ],
     },
     legal: {
       title: 'Legal',
       links: [
-        { name: 'Privacy Policy', href: '#' },
-        { name: 'Terms of Service', href: '#' },
-        { name: 'Cookie Policy', href: '#' },
+        { name: 'Privacy Policy', href: '/privacy-policy' },
+        { name: 'Terms of Service', href: '/terms-of-service' },
+        { name: 'Cookie Policy', href: '/cookie-policy' },
         { name: 'Editorial Guidelines', href: '#' },
       ],
     },
@@ -41,8 +41,8 @@ export default function Footer() {
       title: 'Support',
       links: [
         { name: 'Help Center', href: '#' },
-        { name: 'Advertise With Us', href: '#' },
-        { name: 'Newsletter', href: '#' },
+        { name: 'Advertise With Us', href: '/advertise-with-us' },
+        { name: 'Newsletter', href: '/newsletter-registration' },
       ],
     },
   }

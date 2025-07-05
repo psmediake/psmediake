@@ -1,25 +1,49 @@
 'use client'
+import { AlertCircle } from 'lucide-react'
 import React, { useState } from 'react'
 
 export default function NewsletterSignup() {
   const [email, setEmail] = useState('')
-  const [isSubscribed, setIsSubscribed] = useState(false)
+  const [isSubscribed, setSubscribed] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [alreadySubscribed, setAlreadySubscribed] = useState(false)
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!email) return
 
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsSubscribed(true)
-      setIsLoading(false)
-      setEmail('')
-    }, 1000)
+    // Reset notification states
+    setSubscribed(false)
+    setAlreadySubscribed(false)
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+
+      const data = await res.json()
+
+      if (res.status === 409) {
+        // Show already subscribed notification instead of alert
+        setAlreadySubscribed(true)
+        setTimeout(() => setAlreadySubscribed(false), 5000)
+      } else if (res.ok) {
+        setSubscribed(true)
+        setEmail('')
+        setTimeout(() => setSubscribed(false), 5000)
+      } else {
+        alert(data.error || 'Something went wrong. Please try again later.')
+      }
+    } catch (error) {
+      alert('Failed to subscribe. Please try again later.')
+      console.error(error)
+    }
   }
 
   const resetForm = () => {
-    setIsSubscribed(false)
+    setSubscribed(false)
     setEmail('')
   }
 
@@ -64,46 +88,62 @@ export default function NewsletterSignup() {
 
                   {/* Form */}
                   <div className="space-y-6">
-                    <div className="relative group">
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email address"
-                        className="w-full px-6 py-4 text-base border-2 border-gray-200 rounded-xl focus:border-[#0763fe] focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm placeholder-gray-400 group-hover:border-gray-300 focus:ring-4 focus:ring-[#0763fe]/10"
-                      />
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#0763fe]/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                    </div>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="relative group">
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Enter your email address"
+                          className="w-full px-6 py-4 text-base border-2 border-gray-200 rounded-xl focus:border-[#0763fe] focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm placeholder-gray-400 group-hover:border-gray-300 focus:ring-4 focus:ring-[#0763fe]/10"
+                        />
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#0763fe]/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                      </div>
 
-                    <button
-                      onClick={handleSubmit}
-                      disabled={isLoading || !email}
-                      className="w-full px-8 py-4 bg-gradient-to-r from-[#0763fe] via-blue-500 to-blue-600 text-white text-base font-semibold rounded-xl hover:shadow-xl hover:shadow-[#0763fe]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 transform hover:scale-[1.02] active:scale-[0.98] focus:ring-4 focus:ring-[#0763fe]/20 focus:outline-none"
-                    >
-                      {isLoading ? (
-                        <div className="flex items-center gap-3">
-                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                          <span>Subscribing...</span>
+                      <button
+                        type="submit"
+                        disabled={isLoading || !email}
+                        className="w-full px-8 py-4 bg-gradient-to-r from-[#0763fe] via-blue-500 to-blue-600 text-white text-base font-semibold rounded-xl hover:shadow-xl hover:shadow-[#0763fe]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 transform hover:scale-[1.02] active:scale-[0.98] focus:ring-4 focus:ring-[#0763fe]/20 focus:outline-none"
+                      >
+                        {isLoading ? (
+                          <div className="flex items-center gap-3">
+                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                            <span>Subscribing...</span>
+                          </div>
+                        ) : (
+                          <>
+                            <span>Subscribe Now</span>
+                            <svg
+                              className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </>
+                        )}
+                      </button>
+
+                      {/* Already subscribed notification */}
+                      {alreadySubscribed && (
+                        <div className="mt-4 px-4 py-3 bg-[#0763fe] bg-opacity-20 rounded-md border-l-4 border-[#0763fe] animate-fade-in flex items-start">
+                          <AlertCircle className="h-5 w-5 text-white mr-2 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <p className="text-white text-sm font-medium">Already Subscribed</p>
+                            <p className="text-white/80 text-sm">
+                              This email is already in our subscriber list. Thank you for your
+                              continued interest!
+                            </p>
+                          </div>
                         </div>
-                      ) : (
-                        <>
-                          <span>Subscribe Now</span>
-                          <svg
-                            className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
-                        </>
                       )}
-                    </button>
+                    </form>
 
                     {/* Trust indicators */}
                     <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 pt-2">

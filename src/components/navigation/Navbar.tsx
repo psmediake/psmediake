@@ -16,10 +16,11 @@ export default function DualNavbar() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'News', href: '/news' },
+    { name: 'Politics', href: '/politics' },
     { name: 'Entertainment', href: '/entertainment' },
     { name: 'Sports', href: '/sports' },
-    { name: 'Contact', href: '#' },
+    { name: 'Business', href: '/business' },
+    { name: 'Tech', href: '/tech' },
   ]
 
   return (
@@ -27,14 +28,8 @@ export default function DualNavbar() {
       {/* Mobile Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 md:hidden shadow-sm">
         <div className="flex justify-between items-center px-4 py-3">
-          <Link href="#" className="flex-shrink-0">
-            <Image
-              src="/blue.png"
-              alt="Logo"
-              width={120}
-              height={40}
-              className="h-6 w-auto object-contain"
-            />
+          <Link href="/" className="flex-shrink-0">
+            <Image src="/blue.png" alt="Logo" width={120} height={40} className="h-6 w-auto" />
           </Link>
 
           <div className="flex items-center space-x-2">
@@ -68,71 +63,37 @@ export default function DualNavbar() {
       </nav>
 
       {/* Desktop Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 hidden md:block shadow-sm">
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#0763fe] hidden md:block shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mx-auto">
             {/* Left Side - Logo and Navigation */}
-            <div className="flex items-center space-x-8">
+            <div className="flex justify-center items-center space-x-8">
               {/* Logo */}
               <Link href="/" className="flex-shrink-0">
-                <Image
-                  src="/blue.png"
-                  alt="Logo"
-                  width={140}
-                  height={40}
-                  className="h-6 w-auto object-contain"
-                />
+                <Image src="/blue.png" alt="Logo" width={140} height={40} className="h-6 w-auto" />
               </Link>
-
-              {/* Navigation Links */}
-              <div className="flex items-center space-x-1">
-                {navLinks.map((link, index) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className={`font-medium text-xs px-4 py-2 rounded-lg transition-all duration-200 uppercase ${
-                      index === 0
-                        ? 'bg-[#0763fe] text-white hover:bg-blue-700 shadow-sm'
-                        : 'text-gray-700 hover:text-[#0763fe] hover:bg-gray-50'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
+            </div>
+            {/* Navigation Links */}
+            <div className="flex items-center space-x-1">
+              {navLinks.map((link, index) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`font-medium text-xs px-4 py-2 rounded-lg transition-all duration-200 uppercase ${
+                    index === 0
+                      ? 'bg-[#0763fe] text-white hover:bg-blue-700 shadow-sm'
+                      : 'text-gray-700 hover:text-[#0763fe] hover:bg-gray-50'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
             </div>
 
             {/* Right Side - Search, Social Links, Subscribe */}
             <div className="flex items-center space-x-4">
               {/* Search Bar */}
               <Search />
-
-              {/* Social Links */}
-              <div className="flex items-center space-x-2">
-                <Link
-                  href="#"
-                  className="p-2 text-gray-600 hover:text-[#0763fe] hover:bg-gray-50 rounded-lg transition-all duration-200"
-                >
-                  <FaXTwitter />
-                </Link>
-                <Link
-                  href="#"
-                  className="p-2 text-gray-600 hover:text-[#0763fe] hover:bg-gray-50 rounded-lg transition-all duration-200"
-                >
-                  <FaFacebookF />
-                </Link>
-                <Link
-                  href="#"
-                  className="p-2 text-gray-600 hover:text-[#0763fe] hover:bg-gray-50 rounded-lg transition-all duration-200"
-                >
-                  <FaInstagram />
-                </Link>
-              </div>
-
-              {/* Subscribe Button */}
-              <button className="px-6 py-2 bg-[#0763fe] text-white font-medium text-sm rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow-md">
-                Subscribe
-              </button>
             </div>
           </div>
         </div>
@@ -192,7 +153,7 @@ export default function DualNavbar() {
       )}
 
       {/* Spacer */}
-      <div className="h-16 md:h-20"></div>
+      <div className="h-16 md:h-16"></div>
     </>
   )
 }

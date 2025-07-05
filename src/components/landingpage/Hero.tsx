@@ -23,14 +23,10 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
           {/* Left Column - Side Stories */}
           <div className="lg:col-span-2">
             <div className="space-y-4">
-              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-2">
-                What{"'"}s Latest
-              </h2>
-
               {leftStories.map((post) => (
                 <article
                   key={post.id}
-                  className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200"
+                  className="bg-white border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
                 >
                   {/* Image */}
                   <div className="relative h-32 overflow-hidden hidden md:block">
@@ -98,8 +94,8 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
           </div>
 
           {/* Center Column - Featured Carousel */}
-          <div className="lg:col-span-3 md:mt-10">
-            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div className="lg:col-span-3">
+            <div className="bg-white border border-gray-200 overflow-hidden">
               <Carousel
                 className="w-full"
                 plugins={[
@@ -235,14 +231,10 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
           {/* Right Column - Side Stories */}
           <div className="lg:col-span-2">
             <div className="space-y-4">
-              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide border-b border-gray-200 pb-2">
-                Trending
-              </h2>
-
               {rightStories.map((post) => (
                 <article
                   key={post.id}
-                  className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200"
+                  className="bg-white border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
                 >
                   {/* Image */}
                   <div className="relative h-32 overflow-hidden hidden md:block">

@@ -7,7 +7,7 @@ import { Articles } from '@/types/types'
 export default function NewsCategoriesSection({ posts }: { posts: Articles[] }) {
   const newsPosts = posts.filter((post) => {
     if (typeof post.category === 'object' && 'name' in post.category) {
-      return post.category.name === 'News'
+      return post.category.name === 'Politics'
     }
     return false
   })
@@ -20,7 +20,7 @@ export default function NewsCategoriesSection({ posts }: { posts: Articles[] }) 
           <div className="inline-flex items-center gap-3 rounded-2xl px-4 py-2 shadow-lg border border-blue-100/50">
             <div className="w-2 h-4 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full"></div>
             <h2 className="text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-              News
+              Politics
             </h2>
           </div>
           <div>
