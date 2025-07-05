@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles.css'
-import Navbar from '@/components/navigation/Navbar'
+import DualNavbar from '@/components/navigation/Navbar'
 import Footer from '@/components/navigation/Footer'
 
 export const metadata = {
@@ -15,7 +15,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body>
         <main>
-          <Navbar />
+          <DualNavbar />
           {children}
           <Footer />
         </main>

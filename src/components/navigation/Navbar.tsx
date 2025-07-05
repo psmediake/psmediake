@@ -5,17 +5,13 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { FaInstagram, FaXTwitter } from 'react-icons/fa6'
 import { FaFacebookF } from 'react-icons/fa'
+import Search from '../searchComponent/Search'
 
 export default function DualNavbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
-  }
-
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen)
   }
 
   const navLinks = [
@@ -33,29 +29,16 @@ export default function DualNavbar() {
         <div className="flex justify-between items-center px-4 py-3">
           <Link href="#" className="flex-shrink-0">
             <Image
-              src="/logoblue.png"
+              src="/blue.png"
               alt="Logo"
               width={120}
               height={40}
-              className="h-10 w-auto object-contain"
+              className="h-6 w-auto object-contain"
             />
           </Link>
 
           <div className="flex items-center space-x-2">
-            <button
-              onClick={toggleSearch}
-              className="p-2 text-gray-600 hover:text-[#0763fe] hover:bg-gray-50 rounded-lg transition-all duration-200"
-              aria-label="Toggle search"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </button>
+            <Search />
 
             <button
               onClick={toggleMenu}
@@ -82,32 +65,6 @@ export default function DualNavbar() {
             </button>
           </div>
         </div>
-
-        {/* Mobile Search Bar */}
-        {isSearchOpen && (
-          <div className="px-4 pb-4 border-t border-gray-100">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0763fe] focus:border-transparent transition-all duration-200"
-              />
-              <svg
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
-          </div>
-        )}
       </nav>
 
       {/* Desktop Navbar */}
@@ -119,11 +76,11 @@ export default function DualNavbar() {
               {/* Logo */}
               <Link href="/" className="flex-shrink-0">
                 <Image
-                  src="/logoblue.png"
+                  src="/blue.png"
                   alt="Logo"
                   width={140}
                   height={40}
-                  className="h-10 w-auto object-contain"
+                  className="h-6 w-auto object-contain"
                 />
               </Link>
 
@@ -148,26 +105,7 @@ export default function DualNavbar() {
             {/* Right Side - Search, Social Links, Subscribe */}
             <div className="flex items-center space-x-4">
               {/* Search Bar */}
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="w-64 pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0763fe] focus:border-transparent focus:bg-white transition-all duration-200"
-                />
-                <svg
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
+              <Search />
 
               {/* Social Links */}
               <div className="flex items-center space-x-2">

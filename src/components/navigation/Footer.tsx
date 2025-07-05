@@ -92,11 +92,11 @@ export default function Footer() {
               <div className="mb-6">
                 <Link href="#" className="inline-block">
                   <Image
-                    src="/logoblue.png"
+                    src="/blue.png"
                     alt="PSMedia.ke"
                     width={160}
                     height={48}
-                    className="h-12 w-auto object-contain brightness-0 invert"
+                    className="h-6 w-auto object-contain brightness-0 invert"
                   />
                 </Link>
               </div>
