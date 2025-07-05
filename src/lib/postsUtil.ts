@@ -156,7 +156,7 @@ export async function fetchByCategory(slug: string, page = 1, limit = 18) {
   }
 }
 
-export async function searchPosts(query: string) {
+export async function searchPosts(query: string, page = 1, limit = 0) {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
 
@@ -170,8 +170,17 @@ export async function searchPosts(query: string) {
       ],
     },
     depth: 2,
-    limit: 50,
+    limit,
+    page,
   })
 
-  return res.docs
+  return {
+    posts: res.docs,
+    pagination: {
+      hasNextPage: res.hasNextPage,
+      hasPrevPage: res.hasPrevPage,
+      totalPages: res.totalPages,
+      page: res.page,
+    },
+  }
 }
