@@ -1,38 +1,10 @@
 'use client'
 import React from 'react'
 import { useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import {
-  FaNewspaper,
-  FaUsers,
-  FaGlobe,
-  FaAward,
-  FaPlay,
-  FaArrowRight,
-  FaCheck,
-  FaQuoteLeft,
-} from 'react-icons/fa'
+import { FaNewspaper, FaPlay, FaArrowRight, FaCheck } from 'react-icons/fa'
 
 export default function AboutSection() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
-
-  const stats = [
-    {
-      icon: FaUsers,
-      number: '2.5M+',
-      label: 'Monthly Readers',
-      gradient: 'from-blue-500 to-blue-600',
-    },
-    {
-      icon: FaNewspaper,
-      number: '15K+',
-      label: 'Stories Published',
-      gradient: 'from-purple-500 to-purple-600',
-    },
-    { icon: FaGlobe, number: '50+', label: 'Countries', gradient: 'from-green-500 to-green-600' },
-    { icon: FaAward, number: '25+', label: 'Awards', gradient: 'from-orange-500 to-orange-600' },
-  ]
 
   const features = [
     'Breaking news delivered in real-time',

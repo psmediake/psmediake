@@ -8,21 +8,14 @@ import {
   FaLinkedin,
   FaEnvelope,
   FaInstagram,
-  FaQuoteLeft,
-  FaAward,
-  FaNewspaper,
   FaUsers,
-  FaGraduationCap,
   FaMapMarkerAlt,
   FaCalendarAlt,
-  FaStar,
-  FaHeart,
-  FaEye,
-  FaFilter,
 } from 'react-icons/fa'
 
 export default function TeamsPage() {
   const [selectedDepartment, setSelectedDepartment] = useState('all')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [hoveredMember, setHoveredMember] = useState<number | null>(null)
 
   const departments = [

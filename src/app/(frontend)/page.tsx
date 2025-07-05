@@ -45,6 +45,7 @@ export default async function HomePage() {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
 function renderBlock(block: any, index: number) {
   switch (block.blockType) {
     // case 'hero':

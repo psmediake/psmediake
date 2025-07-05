@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import { useState } from 'react'
 import Link from 'next/link'
 import {
   FaRocket,
@@ -8,29 +7,22 @@ import {
   FaUsers,
   FaGlobe,
   FaEye,
-  FaClick,
-  FaMobile,
   FaDesktop,
   FaNewspaper,
   FaBullseye,
-  FaStar,
   FaCheck,
   FaArrowRight,
   FaEnvelope,
   FaPhone,
-  FaCalendarAlt,
-  FaDownload,
   FaPlay,
   FaAward,
   FaThumbsUp,
   FaClock,
   FaMapMarkerAlt,
 } from 'react-icons/fa'
+import { HiCursorClick } from 'react-icons/hi'
 
 export default function AdvertiseWithUsPage() {
-  const [selectedPackage, setSelectedPackage] = useState('premium')
-  const [activeTab, setActiveTab] = useState('audience')
-
   const audienceStats = [
     {
       icon: FaUsers,
@@ -39,7 +31,12 @@ export default function AdvertiseWithUsPage() {
       color: 'from-blue-500 to-blue-600',
     },
     { icon: FaEye, number: '8.2M+', label: 'Page Views', color: 'from-purple-500 to-purple-600' },
-    { icon: FaClick, number: '4.8%', label: 'CTR Average', color: 'from-green-500 to-green-600' },
+    {
+      icon: HiCursorClick,
+      number: '4.8%',
+      label: 'CTR Average',
+      color: 'from-green-500 to-green-600',
+    },
     { icon: FaGlobe, number: '85+', label: 'Countries', color: 'from-orange-500 to-orange-600' },
   ]
 
@@ -163,34 +160,6 @@ export default function AdvertiseWithUsPage() {
       ],
       popular: false,
       color: 'border-purple-500',
-    },
-  ]
-
-  const testimonials = [
-    {
-      name: 'Jessica Martinez',
-      company: 'TechStart Inc.',
-      quote:
-        'Our ROI increased by 340% within the first quarter. The audience quality is exceptional.',
-      rating: 5,
-      avatar: 'JM',
-      gradient: 'from-blue-500 to-purple-600',
-    },
-    {
-      name: 'Robert Chen',
-      company: 'Global Retail Co.',
-      quote: 'The sponsored content performed beyond our expectations. Highly professional team.',
-      rating: 5,
-      avatar: 'RC',
-      gradient: 'from-green-500 to-teal-600',
-    },
-    {
-      name: 'Amanda Foster',
-      company: 'HealthPlus Solutions',
-      quote: "Newsletter ads drove the highest quality leads we've ever seen. Outstanding results.",
-      rating: 5,
-      avatar: 'AF',
-      gradient: 'from-orange-500 to-red-600',
     },
   ]
 
@@ -482,8 +451,8 @@ export default function AdvertiseWithUsPage() {
         <div className="max-w-4xl mx-auto text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-            Join hundreds of successful businesses that trust us with their advertising needs. Let's
-            create a campaign that delivers real results.
+            Join hundreds of successful businesses that trust us with their advertising needs. Let
+            {"'"}s create a campaign that delivers real results.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
