@@ -67,6 +67,7 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
                       alt={post.title}
                       fill
                       className="object-cover object-top"
+                      loading="lazy"
                     />
                   </div>
 
@@ -275,6 +276,7 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
                       alt={post.title}
                       fill
                       className="object-cover object-top"
+                      loading="lazy"
                     />
                   </div>
 

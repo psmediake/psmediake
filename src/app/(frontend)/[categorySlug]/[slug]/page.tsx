@@ -72,6 +72,16 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
   // Current URL for sharing
   const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
 
+  function getEmbeddedVideoUrl(url: string): string {
+    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      const videoId = url.includes('youtu.be')
+        ? url.split('/').pop()
+        : new URLSearchParams(new URL(url).search).get('v')
+      return `https://www.youtube.com/embed/${videoId}`
+    }
+    return url
+  }
+
   return (
     <div className="bg-gradient-to-b from-white to-gray-50 min-h-screen">
       {/* Main Content Container */}
@@ -115,14 +125,14 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
               {/* Article Header with Title and Excerpt */}
               <div className="px-6 py-2 md:px-10 md:py-0 lg:px-12 lg:py-0">
                 {/* Article Title */}
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-6">
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900  mt-4 leading-tight mb-6">
                   {post.title}
                 </h1>
 
                 {/* Article Excerpt */}
                 {post.excerpt && (
                   <div className="mb-6 md:mb-6">
-                    <p className="text-base md:text-lg text-gray-700 font-light border-l-4 border-[#003566]  pl-4 pr-6 bg-gray-50 py-4 rounded-r-lg">
+                    <p className="text-sm md:text-base text-gray-700 font-light border-l-4 border-[#003566]  pl-4 pr-6 bg-gray-50 py-4 rounded-r-lg">
                       {post.excerpt}
                     </p>
                   </div>
@@ -130,8 +140,17 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
               </div>
 
               {/* Featured Image/Thumbnail */}
-              {post.thumbnail && (
-                <div className="relative h-64 md:h-80 lg:h-96 mx-6 md:mx-10 lg:mx-12 mb-0 overflow-hidden">
+              <div className="relative h-64 md:h-80 lg:h-96 mx-6 md:mx-10 lg:mx-12 mb-0 overflow-hidden">
+                {post.video ? (
+                  <iframe
+                    className="w-full h-full rounded-lg border-2 border-[#0763fe]"
+                    src={getEmbeddedVideoUrl(post.video)}
+                    title={post.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : post.thumbnail ? (
                   <Image
                     src={
                       typeof post.thumbnail === 'object' && post.thumbnail.url
@@ -141,13 +160,15 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
                     alt={post.title}
                     fill
                     className="object-cover"
-                    priority
+                    loading="lazy"
                   />
-                </div>
-              )}
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-r from-[#003566] to-[#0077b6]"></div>
+                )}
+              </div>
 
               {/* Content Area */}
-              <div className="p-6 md:p-10 lg:p-12 pt-0">
+              <div className="p-6 md:px-10 md:py-4 lg:px-12 pt-0">
                 <article className="prose prose-lg max-w-none">
                   <RichText data={post.content} className="richtext" />
                 </article>

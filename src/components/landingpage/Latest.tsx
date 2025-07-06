@@ -39,6 +39,7 @@ export default function Latest({ posts }: { posts: Articles[] }) {
                       }
                       alt={post.title}
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
                     />
                     <div className="absolute top-2 left-2">
                       <span className="inline-block px-2 py-1 bg-[#0763fe] text-white text-xs font-semibold uppercase tracking-wide rounded">

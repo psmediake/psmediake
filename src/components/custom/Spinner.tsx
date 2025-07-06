@@ -32,29 +32,14 @@ const Spinner = () => {
           {/* Inner Logo Container */}
           <div className="absolute inset-4 bg-white rounded-full flex items-center justify-center shadow-sm">
             <Image
-              src="/blue.png"
+              src="/official.png"
               width={80}
               height={28}
               alt="Logo"
               className="w-auto h-auto max-w-full max-h-full object-contain"
+              priority
             />
           </div>
-        </div>
-
-        {/* Floating Particles */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-2 h-2 bg-[#0763fe] rounded-full opacity-30 animate-bounce"
-              style={{
-                left: `${20 + i * 12}%`,
-                top: `${30 + (i % 3) * 20}%`,
-                animationDelay: `${i * 0.3}s`,
-                animationDuration: '2s',
-              }}
-            />
-          ))}
         </div>
       </div>
     </div>

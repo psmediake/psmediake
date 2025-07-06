@@ -235,6 +235,10 @@ export interface Article {
   };
   excerpt?: string | null;
   thumbnail?: (number | null) | Media;
+  /**
+   * Add a youtube video url if you have one but you can leave it empty.
+   */
+  video?: string | null;
   category: number | Category;
   subcategory?: string | null;
   tags?:
@@ -638,6 +642,7 @@ export interface ArticlesSelect<T extends boolean = true> {
   content?: T;
   excerpt?: T;
   thumbnail?: T;
+  video?: T;
   category?: T;
   subcategory?: T;
   tags?:

@@ -67,6 +67,15 @@ export const Articles: CollectionConfig = {
       relationTo: 'media',
     },
     {
+      name: 'video',
+      label: 'Video URL',
+      type: 'text',
+      admin: {
+        description: 'Add a youtube video url if you have one but you can leave it empty.',
+      },
+      defaultValue: 'https://youtube.com',
+    },
+    {
       name: 'category',
       type: 'relationship',
       relationTo: 'categories',

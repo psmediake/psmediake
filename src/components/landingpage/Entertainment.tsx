@@ -88,6 +88,7 @@ export default function EntertainmentNewsSection({ posts }: { posts: Articles[] 
                         }
                         alt={article.title}
                         className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
+                        loading="lazy"
                       />
 
                       {/* Enhanced Gradient Overlay */}

@@ -25,7 +25,7 @@ export async function fetchAllPosts(page = 1, limit = 18) {
         typeof post.thumbnail.url === 'string'
           ? { url: post.thumbnail.url }
           : { url: '/placeholder.jpg' },
-
+      video: post.video,
       category:
         typeof post.category === 'object' && post.category !== null && 'name' in post.category
           ? { name: post.category.name }

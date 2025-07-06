@@ -78,6 +78,7 @@ export default function NewsCategoriesSection({ posts }: { posts: Articles[] }) 
                       }
                       alt={article.title}
                       className="object-cover transition-all duration-700 group-hover:scale-110"
+                      loading="lazy"
                     />
 
                     {/* Gradient Overlay */}
