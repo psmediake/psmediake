@@ -85,10 +85,10 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
   return (
     <div className="bg-gradient-to-b from-white to-gray-50 min-h-screen">
       {/* Main Content Container */}
-      <div className="container mx-auto px-6 py-4 max-w-7xl">
+      <div className="container mx-auto md:px-6 py-4 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Sidebar */}
-          <div className="lg:col-span-2 order-2 lg:order-1">
+          <div className="lg:col-span-2 order-2 lg:order-1 px-6 md:px-0">
             <div className="sticky top-8 space-y-6">
               {/* Author Card */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
@@ -194,7 +194,7 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
           </div>
 
           {/* Right Sidebar */}
-          <div className="lg:col-span-3 order-3">
+          <div className="lg:col-span-3 order-3 px-6 md:px-0">
             <div className="sticky top-8 space-y-6">
               {/* Latest Articles */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
@@ -289,7 +289,7 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
         <div className="container mx-auto px-6 pb-4 max-w-7xl">
           <div className="mt-8 mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">More Related Stories</h2>
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {relatedPosts.map((relatedPost) => (
                 <Link
                   href={`/${
