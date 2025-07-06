@@ -31,5 +31,5 @@
     ".next/types/**/*.ts",
     "src/components/advertiseSection"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".next"]
 }
