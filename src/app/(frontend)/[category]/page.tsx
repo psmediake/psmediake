@@ -6,23 +6,18 @@ import PaginationComponent from '@/components/navigation/PaginationComponent'
 import { fetchByCategory } from '@/lib/postsUtil'
 import Image from 'next/image'
 
-type Props = {
-  params: {
-    categorySlug: string
-  }
-  searchParams?: {
-    page?: string
-  }
+type PageProps = {
+  params: { categorySlug: string }
+  searchParams?: { page?: string }
 }
 
-export default async function Page({ params, searchParams }: Props) {
+export default async function Page({ params, searchParams }: PageProps) {
   const currentPage = Number(searchParams?.page) || 1
   const categorySlug = params.categorySlug
 
-  // ✅ FIXED: Pass the slug to fetchByCategory
+  //Pass the slug to fetchByCategory
   const { posts, pagination } = await fetchByCategory(categorySlug, currentPage)
 
-  // ✅ Already filtered server-side — no need for additional filtering
   const categoryName = posts[0]?.category?.name || decodeURIComponent(categorySlug)
 
   return (

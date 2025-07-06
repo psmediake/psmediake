@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 export default function NewsletterSignup() {
   const [email, setEmail] = useState('')
   const [isSubscribed, setSubscribed] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoading] = useState(false)
   const [alreadySubscribed, setAlreadySubscribed] = useState(false)
 

@@ -17,7 +17,6 @@ import {
   FaPlay,
   FaAward,
   FaThumbsUp,
-  FaClock,
   FaMapMarkerAlt,
 } from 'react-icons/fa'
 import { HiCursorClick } from 'react-icons/hi'
