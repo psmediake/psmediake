@@ -4,7 +4,13 @@ import { withPayload } from '@payloadcms/next/withPayload'
 const nextConfig = {
   // Your Next.js config here
   images: {
-    domains: ['localhost', 'images.unsplash.com', 'cdn.payloadcms.com', 'cdn.payloadcms.com'],
+    domains: [
+      'localhost',
+      'images.unsplash.com',
+      'cdn.payloadcms.com',
+      'cdn.payloadcms.com',
+      'psmediake.vercel.app',
+    ],
   },
 }
 
