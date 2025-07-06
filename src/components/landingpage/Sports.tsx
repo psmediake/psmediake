@@ -45,8 +45,8 @@ export default function SportsSection({ posts }: { posts: Articles[] }) {
 
           {sportsPosts.length > 0 && (
             <div>
-              <a
-                href="#"
+              <Link
+                href="/sports"
                 className="text-orange-400 mt-2 inline-block hover:scale-105 transition-transform duration-300 hover:text-orange-300"
               >
                 View All
@@ -63,7 +63,7 @@ export default function SportsSection({ posts }: { posts: Articles[] }) {
                     />
                   </svg>
                 </span>
-              </a>
+              </Link>
             </div>
           )}
         </div>

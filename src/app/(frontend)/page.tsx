@@ -10,6 +10,7 @@ import NewsHeroWrapper from '@/components/Wrappers/NewsHeroWrapper'
 import LatestNewsWrapper from '@/components/Wrappers/LatestNewsWrapper'
 import NewsSectionWrapper from '@/components/Wrappers/NewsSectionWrapper'
 import SportsSectionWrapper from '@/components/Wrappers/SportsSectionWrapper'
+import BusinessSectionWrapper from '@/components/Wrappers/BusinessSectionWrapper'
 import EntertainmentSectionWrapper from '@/components/Wrappers/EntertainmentSectionWrapper'
 import NewsletterSignup from '@/components/landingpage/NewsLetter'
 
@@ -37,6 +38,7 @@ export default async function HomePage() {
         <LatestNewsWrapper />
         <NewsSectionWrapper />
         <SportsSectionWrapper />
+        <BusinessSectionWrapper />
         <EntertainmentSectionWrapper />
         <NewsletterSignup />
         {page.layout?.map((block, index) => renderBlock(block, index))}

@@ -1,11 +1,51 @@
+'use client'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaFacebookF } from 'react-icons/fa'
 import { FaInstagram, FaLinkedinIn, FaXTwitter, FaYoutube, FaWhatsapp } from 'react-icons/fa6'
 import { MdOutlineEmail, MdOutlineLocalPhone } from 'react-icons/md'
+import { AlertCircle } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const [email, setEmail] = useState('')
+  const [subscribed, setSubscribed] = useState(false)
+  const [alreadySubscribed, setAlreadySubscribed] = useState(false)
+
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!email) return
+
+    // Reset notification states
+    setSubscribed(false)
+    setAlreadySubscribed(false)
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+
+      const data = await res.json()
+
+      if (res.status === 409) {
+        // Show already subscribed notification instead of alert
+        setAlreadySubscribed(true)
+        setTimeout(() => setAlreadySubscribed(false), 5000)
+      } else if (res.ok) {
+        setSubscribed(true)
+        setEmail('')
+        setTimeout(() => setSubscribed(false), 5000)
+      } else {
+        alert(data.error || 'Something went wrong. Please try again later.')
+      }
+    } catch (error) {
+      alert('Failed to subscribe. Please try again later.')
+      console.error(error)
+    }
+  }
 
   const footerSections = {
     content: {
@@ -34,7 +74,7 @@ export default function Footer() {
         { name: 'Privacy Policy', href: '/privacy-policy' },
         { name: 'Terms of Service', href: '/terms-of-service' },
         { name: 'Cookie Policy', href: '/cookie-policy' },
-        { name: 'Editorial Guidelines', href: '#' },
+        { name: 'Editorial Guidelines', href: '/editorial-guidelines' },
       ],
     },
     support: {
@@ -132,16 +172,46 @@ export default function Footer() {
                   Get the latest news and updates delivered straight to your inbox. Join thousands
                   of readers who trust PSMedia.ke.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <input
-                    type="email"
-                    placeholder="Enter your email address"
-                    className="flex-1 px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0763fe] focus:border-transparent transition-all duration-200"
-                  />
-                  <button className="px-6 py-3 bg-[#0763fe] text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl whitespace-nowrap">
-                    Subscribe Now
-                  </button>
-                </div>
+                <form onSubmit={handleSubscribe}>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email address"
+                      className="flex-1 px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0763fe] focus:border-transparent transition-all duration-200"
+                    />
+                    <button
+                      type="submit"
+                      className="px-6 py-3 bg-[#0763fe] text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl whitespace-nowrap cursor-pointer"
+                    >
+                      Subscribe Now
+                    </button>
+                  </div>
+
+                  {/* Success notification */}
+                  {subscribed && (
+                    <div className="mt-4 px-4 py-3 bg-[#0763fe] bg-opacity-20 rounded-md border-l-4 border-[#0763fe]/50 animate-fade-in">
+                      <p className="text-white text-sm">
+                        Thank you for subscribing! We{"'"}ll be in touch soon.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Already subscribed notification */}
+                  {alreadySubscribed && (
+                    <div className="mt-4 px-4 py-3 bg-[#fb113f] bg-opacity-20 rounded-md border-l-4 border-[#fb113f] animate-fade-in flex items-start">
+                      <AlertCircle className="h-5 w-5 text-white mr-2 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-white text-sm font-medium">Already Subscribed</p>
+                        <p className="text-white/80 text-sm">
+                          This email is already in our subscriber list. Thank you for your continued
+                          interest!
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </form>
               </div>
             </div>
           </div>

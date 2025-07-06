@@ -6,6 +6,9 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { s3Storage } from '@payloadcms/storage-s3'
+import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import nodemailer from 'nodemailer'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -23,6 +26,31 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      graphics: {
+        Logo: './components/admin/Logo',
+        Icon: './components/admin/Icon',
+      },
+    },
+    meta: {
+      title: 'Admin Panel | psmedia.ke',
+      description:
+        'Secure admin dashboard for managing news content on psmedia.ke - psmedia.ke Official Website.',
+      icons: [
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          sizes: '96x96',
+          url: '/favicon-96x96.png',
+        },
+        {
+          rel: 'apple-touch-icon',
+          type: 'image/png',
+          url: '/apple-touch-icon.png',
+        },
+      ],
+      robots: 'noindex, nofollow',
+    },
   },
   collections: [Users, Media, Pages, Articles, Categories, Newsletter],
   // serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
@@ -36,6 +64,18 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+  }),
+  email: nodemailerAdapter({
+    defaultFromAddress: `${process.env.EMAIL_USER}`,
+    defaultFromName: 'LilanKichwenKadima',
+    transport: await nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    }),
   }),
   sharp,
   plugins: [
@@ -54,6 +94,27 @@ export default buildConfig({
         },
         region: process.env.S3_REGION,
         endpoint: process.env.S3_ENDPOINT,
+      },
+    }),
+    formBuilderPlugin({
+      fields: {
+        text: true,
+        textarea: true,
+        email: true,
+        number: true,
+        payment: false,
+      },
+      redirectRelationships: ['pages'],
+      defaultToEmail: 'email.developer.backend@gmail.com',
+      formOverrides: {
+        admin: {
+          group: 'Forms',
+        },
+      },
+      formSubmissionOverrides: {
+        admin: {
+          group: 'Forms',
+        },
       },
     }),
   ],

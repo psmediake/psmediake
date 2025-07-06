@@ -17,19 +17,13 @@ export default async function page({ searchParams }: Props) {
 
   const currentPage = Number(resolvedParams?.page) || 1
   const { posts, pagination } = await fetchAllPosts(currentPage)
-  const newsPosts = posts.filter((post) => {
-    if (typeof post.category === 'object' && 'name' in post.category) {
-      return post.category.name === 'News'
-    }
-    return false
-  })
 
   return (
     <>
       <LatestHero />
       <section className="py-12 container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {newsPosts.map((post) => (
+          {posts.map((post) => (
             <Latest key={post.id} post={post} />
           ))}
         </div>

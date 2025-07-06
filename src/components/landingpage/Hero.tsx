@@ -17,7 +17,33 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
   const rightStories = posts.slice(0, 2)
 
   return (
-    <section className="bg-gray-50 py-8">
+    <section className="bg-gray-50 pb-8">
+      {/* Latest News Navigation Link */}
+      <div className="max-w-7xl 2xl:max-w-max mx-auto px-4 sm:px-6 lg:px-8 2xl:px-40 pt-4 mb-2">
+        <div className="flex justify-end items-center">
+          <Link
+            href="/latest-stories"
+            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors duration-200 group"
+          >
+            <svg
+              className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+            Show More Latest News
+          </Link>
+        </div>
+      </div>
+
       <div className="max-w-7xl 2xl:max-w-max mx-auto px-4 sm:px-6 lg:px-8 2xl:px-40">
         <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
           {/* Left Column - Side Stories */}

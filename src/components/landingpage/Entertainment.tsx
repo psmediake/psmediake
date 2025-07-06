@@ -20,13 +20,13 @@ export default function EntertainmentNewsSection({ posts }: { posts: Articles[] 
         <div className="text-start mb-12 flex items-center justify-between border-b border-slate-200 pb-6">
           <div className="inline-flex items-center gap-3 rounded-2xl px-6 py-3 shadow-lg border border-purple-100/50 bg-white/80 backdrop-blur-sm">
             <div className="w-3 h-5 bg-gradient-to-b from-blue-900 to-orange-400 rounded-full animate-pulse"></div>
-            <h2 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-slate-800 to-blue-900 bg-clip-text text-transparent">
+            <h2 className="text-xl font-bold bg-gradient-to-r from-slate-800 to-blue-900 bg-clip-text text-transparent">
               Entertainment
             </h2>
           </div>
           <div>
             <Link
-              href="#"
+              href="/entertainment"
               className="text-blue-900 inline-flex items-center gap-2 font-medium hover:scale-105 transition-all duration-300 group"
             >
               <span>View All</span>

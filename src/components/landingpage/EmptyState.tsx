@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function EmptyState({ category }: { category: string }) {
@@ -24,7 +25,9 @@ export default function EmptyState({ category }: { category: string }) {
         </div>
       </div>
 
-      <h3 className="text-2xl font-bold text-white mb-4">No Sports News Yet</h3>
+      <h3 className="text-2xl font-bold text-gray-900 mb-4">
+        No <span className="capitalize">{category}</span> News Yet
+      </h3>
       <p className="text-gray-400 text-center mb-8 max-w-md leading-relaxed">
         We{"'"}re working on bringing you the latest {category} updates. Check back soon for
         exciting news from the world of athletics, football, basketball, and more!
@@ -32,9 +35,12 @@ export default function EmptyState({ category }: { category: string }) {
 
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-4">
-        <button className="px-6 py-3 bg-[#0763fe] text-white font-medium rounded-lg hover:from-orange-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+        <Link
+          href="/newsletter-registration"
+          className="px-6 py-3 bg-[#0763fe] text-white font-medium rounded-lg hover:from-orange-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 cursor-pointer"
+        >
           Subscribe for Updates
-        </button>
+        </Link>
       </div>
     </div>
   )

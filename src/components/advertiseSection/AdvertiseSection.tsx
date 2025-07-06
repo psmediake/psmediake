@@ -40,26 +40,6 @@ export default function AdvertiseWithUsPage() {
     { icon: FaGlobe, number: '85+', label: 'Countries', color: 'from-orange-500 to-orange-600' },
   ]
 
-  const demographics = [
-    {
-      category: 'Age Groups',
-      data: [
-        { label: '18-24', percentage: 15, color: 'bg-blue-400' },
-        { label: '25-34', percentage: 35, color: 'bg-blue-500' },
-        { label: '35-44', percentage: 28, color: 'bg-blue-600' },
-        { label: '45-54', percentage: 22, color: 'bg-blue-700' },
-      ],
-    },
-    {
-      category: 'Device Usage',
-      data: [
-        { label: 'Mobile', percentage: 65, color: 'bg-green-400' },
-        { label: 'Desktop', percentage: 30, color: 'bg-green-500' },
-        { label: 'Tablet', percentage: 5, color: 'bg-green-600' },
-      ],
-    },
-  ]
-
   const adFormats = [
     {
       id: 'banner',
@@ -107,62 +87,6 @@ export default function AdvertiseWithUsPage() {
     },
   ]
 
-  const packages = [
-    {
-      id: 'starter',
-      name: 'Starter',
-      price: '$299',
-      period: '/month',
-      description: 'Perfect for small businesses starting their journey',
-      features: [
-        '50K impressions/month',
-        'Banner ads only',
-        'Basic analytics',
-        'Email support',
-        '1 ad creative included',
-      ],
-      popular: false,
-      color: 'border-gray-200',
-    },
-    {
-      id: 'premium',
-      name: 'Premium',
-      price: '$799',
-      period: '/month',
-      description: 'Most popular choice for growing businesses',
-      features: [
-        '200K impressions/month',
-        'All ad formats',
-        'Advanced analytics',
-        'Priority support',
-        '3 ad creatives included',
-        'A/B testing',
-        'Newsletter inclusion',
-      ],
-      popular: true,
-      color: 'border-blue-500',
-    },
-    {
-      id: 'enterprise',
-      name: 'Enterprise',
-      price: 'Custom',
-      period: '',
-      description: 'Tailored solutions for large organizations',
-      features: [
-        'Unlimited impressions',
-        'Custom ad formats',
-        'Dedicated account manager',
-        '24/7 support',
-        'Unlimited creatives',
-        'White-label options',
-        'Custom reporting',
-        'Brand partnership opportunities',
-      ],
-      popular: false,
-      color: 'border-purple-500',
-    },
-  ]
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero Section */}
@@ -192,10 +116,10 @@ export default function AdvertiseWithUsPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="#packages"
+                  href="/contact-us"
                   className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
-                  View Packages
+                  Contact Us
                   <FaArrowRight className="ml-2 text-sm" />
                 </Link>
               </div>
@@ -248,67 +172,6 @@ export default function AdvertiseWithUsPage() {
               <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
                 <FaBullseye className="text-white text-lg" />
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Audience Insights Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Know Your Audience
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Our readers are engaged professionals who value quality content and trust our
-              recommendations.
-            </p>
-          </div>
-
-          {/* Demographics */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {demographics.map((demo, index) => (
-              <div key={index} className="bg-gray-50 rounded-xl p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">{demo.category}</h3>
-                <div className="space-y-3">
-                  {demo.data.map((item, idx) => (
-                    <div key={idx} className="flex items-center justify-between">
-                      <span className="text-gray-700 text-sm">{item.label}</span>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-24 bg-gray-200 rounded-full h-2">
-                          <div
-                            className={`h-2 rounded-full ${item.color}`}
-                            style={{ width: `${item.percentage}%` }}
-                          ></div>
-                        </div>
-                        <span className="text-sm font-medium text-gray-900 w-8">
-                          {item.percentage}%
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Key Insights */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
-              <FaUsers className="text-blue-600 text-2xl mb-3" />
-              <h4 className="font-semibold text-gray-900 mb-2">Highly Educated</h4>
-              <p className="text-gray-600 text-sm">78% have college degrees or higher education</p>
-            </div>
-            <div className="bg-green-50 rounded-xl p-6 border border-green-100">
-              <FaChartLine className="text-green-600 text-2xl mb-3" />
-              <h4 className="font-semibold text-gray-900 mb-2">High Income</h4>
-              <p className="text-gray-600 text-sm">Average household income of $85K+ annually</p>
-            </div>
-            <div className="bg-purple-50 rounded-xl p-6 border border-purple-100">
-              <FaClock className="text-purple-600 text-2xl mb-3" />
-              <h4 className="font-semibold text-gray-900 mb-2">Engaged Readers</h4>
-              <p className="text-gray-600 text-sm">Average session duration of 4.2 minutes</p>
             </div>
           </div>
         </div>
@@ -373,68 +236,6 @@ export default function AdvertiseWithUsPage() {
                     className="w-full inline-flex items-center justify-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors text-sm"
                   >
                     Learn More
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Packages */}
-      <section id="packages" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Choose Your Package
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Flexible pricing options designed to fit businesses of all sizes.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {packages.map((pkg) => (
-              <div
-                key={pkg.id}
-                className={`relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${pkg.color} ${pkg.popular ? 'scale-105' : ''}`}
-              >
-                {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-1 rounded-full text-sm font-medium">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-
-                <div className="p-8">
-                  <div className="text-center mb-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                    <p className="text-gray-600 text-sm mb-4">{pkg.description}</p>
-                    <div className="flex items-baseline justify-center">
-                      <span className="text-4xl font-bold text-gray-900">{pkg.price}</span>
-                      <span className="text-gray-500 ml-1">{pkg.period}</span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 mb-8">
-                    {pkg.features.map((feature, index) => (
-                      <div key={index} className="flex items-center text-sm text-gray-700">
-                        <FaCheck className="text-green-500 mr-3 text-xs" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-
-                  <Link
-                    href="#contact"
-                    className={`w-full inline-flex items-center justify-center px-6 py-3 font-medium rounded-lg transition-all duration-200 ${
-                      pkg.popular
-                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl'
-                        : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
-                    }`}
-                  >
-                    Get Started
                   </Link>
                 </div>
               </div>
