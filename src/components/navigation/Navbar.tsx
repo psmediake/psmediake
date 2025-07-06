@@ -29,7 +29,7 @@ export default function DualNavbar() {
       <nav className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 md:hidden shadow-sm">
         <div className="flex justify-between items-center px-4 py-3">
           <Link href="/" className="flex-shrink-0">
-            <Image src="/blue.png" alt="Logo" width={200} height={200} className="h-5 w-auto" />
+            <Image src="/official.png" alt="Logo" width={200} height={200} className="h-8 w-auto" />
           </Link>
 
           <div className="flex items-center space-x-2">
@@ -70,7 +70,13 @@ export default function DualNavbar() {
             <div className="flex justify-center items-center space-x-8">
               {/* Logo */}
               <Link href="/" className="flex-shrink-0">
-                <Image src="/blue.png" alt="Logo" width={140} height={40} className="h-6 w-auto" />
+                <Image
+                  src="/official.png"
+                  alt="Logo"
+                  width={140}
+                  height={40}
+                  className="h-8 w-auto"
+                />
               </Link>
             </div>
             {/* Navigation Links */}
