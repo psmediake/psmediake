@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic'
 import type { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles?limit=1000&depth=1`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles?limit=1000&depth=3`, {
     next: { revalidate: 3600 },
   })
 
@@ -18,16 +18,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     updatedAt?: string
   }[] = postsData.docs
 
-  const postEntries: MetadataRoute.Sitemap = posts
-    .filter((post) => post.category?.slug)
-    .map((post) => ({
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${post.category.slug}/${post.slug}`,
-      lastModified: post.updatedAt || new Date().toISOString(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    }))
+  const validPosts = posts.filter((post) => post.category?.slug)
 
-  const uniqueCategories = Array.from(new Set(posts.map((post) => post.category.slug)))
+  const postEntries: MetadataRoute.Sitemap = validPosts.map((post) => ({
+    url: `${process.env.NEXT_PUBLIC_SITE_URL}/${post.category.slug}/${post.slug}`,
+    lastModified: post.updatedAt || new Date().toISOString(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
+  const uniqueCategories = Array.from(new Set(validPosts.map((post) => post.category.slug)))
 
   const categoryEntries: MetadataRoute.Sitemap = uniqueCategories.map((categorySlug) => ({
     url: `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}`,
