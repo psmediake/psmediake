@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /__next/
+
+
+Host: https://psmedia.co.ke
+
+
+Sitemap: https://psmedia.co.ke/sitemap.xml
