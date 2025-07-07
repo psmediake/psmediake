@@ -10,24 +10,52 @@ export const ShareButton = ({
   url: string
   title: string
 }) => {
-  const handleShare = () => {
-    let shareUrl = ''
+  const handleShare = async () => {
+    const fullText = `${title} - ${url}`
+
+    // Use Web Share API if supported and not "copy"
+    if (platform !== 'copy' && navigator.share) {
+      try {
+        await navigator.share({ title, url })
+        return
+      } catch (err) {
+        console.warn('Web Share failed, falling back...', err)
+      }
+    }
+
     switch (platform) {
       case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`
+        window.open(
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+          '_blank',
+          'width=600,height=400',
+        )
         break
       case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`
+        window.open(
+          `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
+          '_blank',
+          'width=600,height=400',
+        )
         break
       case 'linkedin':
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`
+        window.open(
+          `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+          '_blank',
+          'width=600,height=400',
+        )
         break
       case 'copy':
-        navigator.clipboard.writeText(url)
-        return
-    }
-    if (shareUrl) {
-      window.open(shareUrl, '_blank', 'width=600,height=400')
+        try {
+          await navigator.clipboard.writeText(fullText)
+          alert('Link copied to clipboard!')
+        } catch (err) {
+          console.error('Failed to copy:', err)
+          alert('Copy failed.')
+        }
+        break
+      default:
+        console.warn('Unsupported platform:', platform)
     }
   }
 

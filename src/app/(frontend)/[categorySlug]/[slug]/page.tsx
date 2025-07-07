@@ -141,7 +141,13 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
   const authorInitial = authorName.charAt(0)
 
   // Current URL for sharing
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
+  const categorySlug =
+    typeof post.category === 'object' && post.category !== null && 'slug' in post.category
+      ? post.category.slug
+      : typeof post.category === 'string' || typeof post.category === 'number'
+        ? post.category
+        : 'news'
+  const currentUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}/${slug}`
 
   function getEmbeddedVideoUrl(url: string): string {
     if (url.includes('youtube.com') || url.includes('youtu.be')) {
