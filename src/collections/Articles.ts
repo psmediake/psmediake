@@ -73,7 +73,6 @@ export const Articles: CollectionConfig = {
       admin: {
         description: 'Add a youtube video url if you have one but you can leave it empty.',
       },
-      defaultValue: 'https://youtube.com',
     },
     {
       name: 'category',
