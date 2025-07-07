@@ -2,16 +2,16 @@ import React from 'react'
 import AdvertiseWithUsPage from '@/components/advertiseSection/AdvertiseSection'
 
 export const metadata = {
-  title: 'Advertise With Us | PSMedia.ke',
+  title: 'Advertise With Us | psmedia.co.ke',
   description:
     'Promote your brand with PSMedia.ke — a trusted news platform reaching thousands of engaged readers across Kenya daily. Explore flexible advertising options that work.',
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
   openGraph: {
-    title: 'Advertise With Us | PSMedia.ke',
+    title: 'Advertise With Us | psmedia.co.ke',
     description:
       'Partner with PSMedia.ke to reach a growing audience through display ads, sponsored content, and tailored brand placements on one of Kenya’s leading digital news platforms.',
     url: 'https://www.psmedia.co.ke/advertise-with-us',
-    siteName: 'PSMedia.ke',
+    siteName: 'PSMedia',
     images: [
       {
         url: '/official.png',
@@ -25,7 +25,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Advertise With Us | PSMedia.ke',
+    title: 'Advertise With Us | psmedia.co.ke',
     description:
       'Grow your brand with strategic advertising on PSMedia.ke — Kenya’s independent digital newsroom with a wide and loyal readership.',
     images: ['/official.png'],

@@ -5,6 +5,261 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* fonts */
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Black.woff2') format('woff2'),
+    url('/fonts/Itoya-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Black.woff2') format('woff2'),
+    url('/fonts/Itoya-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-BlackItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-BlackItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Bold.woff2') format('woff2'),
+    url('/fonts/Itoya-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-BlackItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-BlackItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Bold.woff2') format('woff2'),
+    url('/fonts/Itoya-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-ExtraBold.woff2') format('woff2'),
+    url('/fonts/Itoya-ExtraBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-BoldItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-BoldItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-ExtraBold.woff2') format('woff2'),
+    url('/fonts/Itoya-ExtraBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-ExtraBoldItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-ExtraBoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-ExtraBoldItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-ExtraBoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Italic.woff2') format('woff2'),
+    url('/fonts/Itoya-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Italic.woff2') format('woff2'),
+    url('/fonts/Itoya-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Light.woff2') format('woff2'),
+    url('/fonts/Itoya-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Light.woff2') format('woff2'),
+    url('/fonts/Itoya-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-LightItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Medium.woff2') format('woff2'),
+    url('/fonts/Itoya-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-LightItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-MediumItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Medium.woff2') format('woff2'),
+    url('/fonts/Itoya-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-MediumItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Regular.woff2') format('woff2'),
+    url('/fonts/Itoya-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-Regular.woff2') format('woff2'),
+    url('/fonts/Itoya-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-UltraLight.woff2') format('woff2'),
+    url('/fonts/Itoya-UltraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-UltraLight.woff2') format('woff2'),
+    url('/fonts/Itoya-UltraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-UltraLightItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-UltraLightItalic.woff') format('woff');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Itoya';
+  src: url('/fonts/Itoya-UltraLightItalic.woff2') format('woff2'),
+    url('/fonts/Itoya-UltraLightItalic.woff') format('woff');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* fontsend */
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -123,11 +378,11 @@
 }
 
 body {
-  font-family: 'Roboto Slab', sans-serif;
+  font-family: 'Itoya', sans-serif;
 }
 
 .richtext {
-  font-family: "Roboto Slab", Georgia, sans-serif;
+  font-family: "Itoya", Georgia, sans-serif;
   color: #121212;
   line-height: 1.75;
   font-size: 1.05rem;
@@ -141,7 +396,7 @@ body {
 .richtext h2,
 .richtext h3,
 .richtext h4 {
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Itoya", sans-serif;
   font-weight: 700;
   line-height: 1.2;
   margin: 2rem 0 1rem;

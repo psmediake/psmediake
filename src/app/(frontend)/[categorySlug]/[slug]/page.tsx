@@ -50,14 +50,14 @@ export async function generateMetadata({
   const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}/${slug}`
 
   return {
-    title: `${postTitle} | PSMedia.ke`,
+    title: `${postTitle}`,
     description: postExcerpt,
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
     openGraph: {
-      title: `${postTitle} | PSMedia.ke`,
+      title: `${postTitle} | psmedia.co.ke`,
       description: postExcerpt,
       url: pageUrl,
-      siteName: 'PSMedia.ke',
+      siteName: 'PSMedia',
       images: [
         {
           url: imageUrl,
@@ -71,7 +71,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${postTitle} | PSMedia.ke`,
+      title: `${postTitle} | psmedia.co.ke`,
       description: postExcerpt,
       images: [imageUrl],
       site: '@PSMedia_ke',

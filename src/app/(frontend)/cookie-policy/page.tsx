@@ -2,16 +2,16 @@ import React from 'react'
 import Cookie from '@/components/legalComponents/Cookie'
 
 export const metadata = {
-  title: 'Cookie Policy | PSMedia.ke',
+  title: 'Cookie Policy | psmedia.co.ke',
   description:
     'Learn how PSMedia.ke uses cookies and similar technologies to improve your browsing experience, personalize content, and analyze traffic.',
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
   openGraph: {
-    title: 'Cookie Policy | PSMedia.ke',
+    title: 'Cookie Policy | psmedia.co.ke',
     description:
       'Understand how cookies are used on PSMedia.ke to enhance functionality, analyze engagement, and support personalized services.',
     url: 'https://www.psmedia.co.ke/cookie-policy',
-    siteName: 'PSMedia.ke',
+    siteName: 'PSMedia',
     images: [
       {
         url: '/official.png',
@@ -25,7 +25,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cookie Policy | PSMedia.ke',
+    title: 'Cookie Policy | psmedia.co.ke',
     description:
       'Find out how PSMedia.ke uses cookies to ensure a better user experience and analyze website traffic.',
     images: ['/official.png'],

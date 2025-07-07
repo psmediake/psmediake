@@ -21,7 +21,7 @@ export const metadata = {
     description:
       'Explore top stories, breaking news, in-depth analysis and multimedia from Kenya’s independent media house - PSMedia.ke.',
     url: 'https://www.psmedia.co.ke',
-    siteName: 'PSMedia.ke',
+    siteName: 'PSMedia',
     images: [
       {
         url: '/official.png',

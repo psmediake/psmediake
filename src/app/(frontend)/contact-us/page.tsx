@@ -3,16 +3,16 @@ import ContactHero from '@/components/contactPage/ContactHero'
 import ContactSection from '@/components/contactPage/ContactSection'
 
 export const metadata = {
-  title: 'Contact Us | PSMedia.ke',
+  title: 'Contact Us | psmedia.co.ke',
   description:
     'Get in touch with the PSMedia.ke team for media inquiries, advertising opportunities, story tips, or general feedback. We value your input and partnership.',
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
   openGraph: {
-    title: 'Contact Us | PSMedia.ke',
+    title: 'Contact Us | psmedia.co.ke',
     description:
       'Reach out to PSMedia.ke for support, press inquiries, and collaborations. Let’s connect and build impactful media together.',
     url: 'https://www.psmedia.co.ke/contact-us',
-    siteName: 'PSMedia.ke',
+    siteName: 'PSMedia',
     images: [
       {
         url: '/official.png',
@@ -26,7 +26,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact Us | PSMedia.ke',
+    title: 'Contact Us | psmedia.co.ke',
     description:
       'Have questions or feedback? Get in touch with the editorial and support team at PSMedia.ke.',
     images: ['/official.png'],

@@ -7,16 +7,16 @@ import PaginationComponent from '@/components/navigation/PaginationComponent'
 import { fetchAllPosts } from '@/lib/postsUtil'
 
 export const metadata = {
-  title: 'Latest Stories | PSMedia.ke',
+  title: 'Latest Stories | psmedia.co.ke',
   description:
     'Catch up with the most recent news stories, features, and breaking updates across Kenya and beyond — only on PSMedia.ke.',
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
   openGraph: {
-    title: 'Latest Stories | PSMedia.ke',
+    title: 'Latest Stories | psmedia.co.ke',
     description:
       'Stay informed with the latest updates from politics, business, sports, and more. Explore breaking news and trending topics, updated every hour.',
     url: 'https://www.psmedia.co.ke/latest-stories',
-    siteName: 'PSMedia.ke',
+    siteName: 'PSMedia',
     images: [
       {
         url: '/official.png',
@@ -30,7 +30,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Latest Stories | PSMedia.ke',
+    title: 'Latest Stories | psmedia.co.ke',
     description:
       'Discover the most recent stories across Kenya — updated regularly to keep you ahead of the headlines.',
     images: ['/official.png'],

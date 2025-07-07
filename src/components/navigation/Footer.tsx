@@ -268,7 +268,7 @@ export default function Footer() {
                       href="mailto:info@psmedia.ke"
                       className="hover:text-[#0763fe] transition-colors duration-200"
                     >
-                      psmediake@gmail.com{' '}
+                      psmediake@gmail.com
                     </Link>
                   </div>
                 </div>
