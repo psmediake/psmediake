@@ -63,7 +63,7 @@ export async function fetchRelatedPosts(currentCategory: { name: string }, curre
 
   const { docs: allBlogs } = await payload.find({
     collection: 'articles',
-    depth: 1,
+    depth: 3,
     limit: 4,
     where: {
       and: [
