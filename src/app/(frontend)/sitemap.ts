@@ -21,8 +21,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     type: 'posts',
     url: `${process.env.NEXT_PUBLIC_SITE_URL}/${post.category.slug}/${post.slug}`,
     lastModified: post.updatedAt || new Date().toISOString(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
+    changeFrequency: 'hourly',
+    priority: 0.9,
   }))
 
   const uniqueCategories = Array.from(new Set(posts.map((post) => post.category.slug)))

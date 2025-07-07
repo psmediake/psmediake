@@ -39,7 +39,7 @@ export async function generateMetadata({
     }
   }
 
-  const postTitle = post.title || 'News Article – PSMedia.ke'
+  const postTitle = post.title || 'News Article - PSMedia.ke'
   const postExcerpt =
     post.excerpt || 'Stay informed with breaking news and trusted reporting from PSMedia.ke.'
   const imageUrl =
@@ -48,11 +48,12 @@ export async function generateMetadata({
       : '/official.png'
 
   const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}/${slug}`
-
+  const authorName = post.author
   return {
     title: `${postTitle}`,
     description: postExcerpt,
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+
     openGraph: {
       title: `${postTitle} | psmedia.co.ke`,
       description: postExcerpt,
@@ -63,7 +64,7 @@ export async function generateMetadata({
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: post.title || 'PSMedia.ke Article',
+          alt: post.title || 'PSMedia Article',
         },
       ],
       type: 'article',
@@ -76,8 +77,34 @@ export async function generateMetadata({
       images: [imageUrl],
       site: '@PSMedia_ke',
     },
+
+    // ✅ Add fallback metadata used by some crawlers (like WhatsApp and Discord)
     alternates: {
       canonical: pageUrl,
+    },
+    // 👉 Add base-level fields
+    authors: [authorName],
+    publisher: 'PSMedia',
+    themeColor: '#0763fe',
+
+    // ✅ Fallback image for older crawlers
+    icons: {
+      icon: '/favicon.ico',
+      shortcut: '/favicon.ico',
+      apple: '/apple-touch-icon.png',
+    },
+
+    // ✅ Add top-level og:image fallback
+    other: {
+      'og:title': `${postTitle} | psmedia.co.ke`,
+      'og:description': postExcerpt,
+      'og:image': imageUrl,
+      'og:url': pageUrl,
+      'og:type': 'article',
+      'twitter:image': imageUrl,
+      'twitter:title': `${postTitle} | psmedia.co.ke`,
+      'twitter:description': postExcerpt,
+      'twitter:card': 'summary_large_image',
     },
   }
 }
