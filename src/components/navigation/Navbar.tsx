@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import { FaInstagram, FaXTwitter } from 'react-icons/fa6'
+import { FaInstagram, FaTiktok, FaWhatsapp, FaXTwitter, FaYoutube } from 'react-icons/fa6'
 import { FaFacebookF } from 'react-icons/fa'
 import Search from '../searchComponent/Search'
 
@@ -128,22 +128,40 @@ export default function DualNavbar() {
             <div className="pt-4 mt-4 border-t border-gray-200">
               <div className="flex items-center justify-center space-x-4 mb-4">
                 <Link
-                  href="#"
+                  href="https://x.com/PSMedia_ke?s=09"
                   className="p-3 text-gray-600 hover:text-[#0763fe] hover:bg-gray-50 rounded-lg transition-all duration-200"
                 >
                   <FaXTwitter />
                 </Link>
                 <Link
-                  href="#"
+                  href="https://www.facebook.com/photosniper.media.ke.2025?mibextid=JRoKGi"
                   className="p-3 text-gray-600 hover:text-[#0763fe] hover:bg-gray-50 rounded-lg transition-all duration-200"
                 >
                   <FaFacebookF />
                 </Link>
                 <Link
-                  href="#"
+                  href="https://www.instagram.com/photosniper_ke?igsh=dGp1bjRyYmxvcG5n"
                   className="p-3 text-gray-600 hover:text-[#0763fe] hover:bg-gray-50 rounded-lg transition-all duration-200"
                 >
                   <FaInstagram />
+                </Link>
+                <Link
+                  href="https://www.tiktok.com/@psmedia.ke"
+                  className="p-3 text-gray-600 hover:text-[#0763fe] hover:bg-gray-50 rounded-lg transition-all duration-200"
+                >
+                  <FaTiktok />
+                </Link>
+                <Link
+                  href="https://whatsapp.com/channel/0029VbBAQIQEVccH7VB5qB2y"
+                  className="p-3 text-gray-600 hover:text-[#0763fe] hover:bg-gray-50 rounded-lg transition-all duration-200"
+                >
+                  <FaWhatsapp />
+                </Link>
+                <Link
+                  href="https://youtube.com/@photosnipermediake?si=MYMR4LhDFA3zMtLt"
+                  className="p-3 text-gray-600 hover:text-[#0763fe] hover:bg-gray-50 rounded-lg transition-all duration-200"
+                >
+                  <FaYoutube />
                 </Link>
               </div>
             </div>

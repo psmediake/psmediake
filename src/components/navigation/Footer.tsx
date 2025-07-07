@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaFacebookF } from 'react-icons/fa'
-import { FaInstagram, FaLinkedinIn, FaXTwitter, FaYoutube, FaWhatsapp } from 'react-icons/fa6'
+import { FaInstagram, FaTiktok, FaXTwitter, FaYoutube, FaWhatsapp } from 'react-icons/fa6'
 import { MdOutlineEmail, MdOutlineLocalPhone } from 'react-icons/md'
 import { AlertCircle } from 'lucide-react'
 
@@ -90,32 +90,32 @@ export default function Footer() {
   const socialLinks = [
     {
       name: 'Twitter',
-      href: '#',
+      href: 'https://x.com/PSMedia_ke?s=09',
       icon: <FaXTwitter />,
     },
     {
       name: 'Facebook',
-      href: '#',
+      href: 'https://www.facebook.com/photosniper.media.ke.2025?mibextid=JRoKGi',
       icon: <FaFacebookF />,
     },
     {
       name: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com/photosniper_ke?igsh=dGp1bjRyYmxvcG5n',
       icon: <FaInstagram />,
     },
     {
-      name: 'LinkedIn',
-      href: '#',
-      icon: <FaLinkedinIn />,
+      name: 'Tiktok',
+      href: 'https://www.tiktok.com/@psmedia.ke',
+      icon: <FaTiktok />,
     },
     {
       name: 'YouTube',
-      href: '#',
+      href: 'https://youtube.com/@photosnipermediake?si=MYMR4LhDFA3zMtLt',
       icon: <FaYoutube />,
     },
     {
       name: 'WhatsApp',
-      href: '#',
+      href: 'https://whatsapp.com/channel/0029VbBAQIQEVccH7VB5qB2y',
       icon: <FaWhatsapp />,
     },
   ]

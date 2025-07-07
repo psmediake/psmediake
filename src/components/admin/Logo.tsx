@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import logoDark from 'public/white.png'
-import logo from 'public/blue.png'
+import logo from 'public/official.png'
 
 export default function Logo() {
   return (
