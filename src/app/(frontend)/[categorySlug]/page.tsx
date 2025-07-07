@@ -6,6 +6,74 @@ import PaginationComponent from '@/components/navigation/PaginationComponent'
 import { fetchByCategory } from '@/lib/postsUtil'
 import Image from 'next/image'
 
+import config from '@/payload.config'
+import { getPayload } from 'payload'
+import { Metadata } from 'next'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { categorySlug: string }
+}): Promise<Metadata> {
+  const { categorySlug } = params
+
+  const payload = await getPayload({ config })
+
+  const { docs: categories } = await payload.find({
+    collection: 'categories',
+    where: {
+      slug: {
+        equals: categorySlug,
+      },
+    },
+    limit: 1,
+  })
+
+  const category = categories[0]
+
+  if (!category) {
+    return {
+      title: 'Category Not Found | PSMedia.ke',
+      description:
+        'The category you are looking for does not exist. Discover more stories at PSMedia.ke.',
+    }
+  }
+
+  const categoryName = category.name
+
+  return {
+    title: `${categoryName} News | PSMedia.ke`,
+    description: `Latest updates, features, and analysis in ${categoryName} from PSMedia.ke — Kenya's trusted news source.`,
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+    openGraph: {
+      title: `${categoryName} News | PSMedia.ke`,
+      description: `Explore trending news and analysis in ${categoryName}. Updated hourly from across Kenya and beyond.`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}`,
+      siteName: 'PSMedia.ke',
+      images: [
+        {
+          url: '/official.png',
+          width: 1200,
+          height: 630,
+          alt: `Latest ${categoryName} News - PSMedia.ke`,
+        },
+      ],
+      locale: 'en_KE',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${categoryName} News | PSMedia.ke`,
+      description: `Stay updated with the latest in ${categoryName}. Powered by PSMedia.ke.`,
+      images: ['/official.png'],
+      site: '@psmedia_ke',
+    },
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}`,
+    },
+  }
+}
+
 type PageProps = {
   params: { categorySlug: string }
   searchParams?: { page?: string }

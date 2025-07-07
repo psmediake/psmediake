@@ -10,6 +10,7 @@ const nextConfig = {
       'cdn.payloadcms.com',
       'cdn.payloadcms.com',
       'psmediake.vercel.app',
+      'facebook.com',
     ],
   },
 }

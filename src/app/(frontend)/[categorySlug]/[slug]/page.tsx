@@ -11,6 +11,77 @@ import { fetchAllPosts, fetchRelatedPosts } from '@/lib/postsUtil'
 import { RichText } from '@/components/RichText'
 import { ShareButton } from '@/components/custom/ShareButton'
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; categorySlug: string }>
+}) {
+  const { slug, categorySlug } = await params
+
+  const payloadConfig = await config
+  const payload = await getPayload({ config: payloadConfig })
+
+  const { docs } = await payload.find({
+    collection: 'articles',
+    where: {
+      slug: { equals: slug },
+    },
+    depth: 2,
+  })
+
+  const post = docs[0]
+
+  if (!post) {
+    return {
+      title: 'Article Not Found – PSMedia.ke',
+      description:
+        'The article you’re looking for doesn’t exist. Find the latest breaking news, features, and insights at PSMedia.ke.',
+    }
+  }
+
+  const postTitle = post.title || 'News Article – PSMedia.ke'
+  const postExcerpt =
+    post.excerpt || 'Stay informed with breaking news and trusted reporting from PSMedia.ke.'
+  const imageUrl =
+    typeof post?.thumbnail === 'object' && post.thumbnail?.url
+      ? post.thumbnail.url
+      : '/official.png'
+
+  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}/${slug}`
+
+  return {
+    title: `${postTitle} | PSMedia.ke`,
+    description: postExcerpt,
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+    openGraph: {
+      title: `${postTitle} | PSMedia.ke`,
+      description: postExcerpt,
+      url: pageUrl,
+      siteName: 'PSMedia.ke',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title || 'PSMedia.ke Article',
+        },
+      ],
+      type: 'article',
+      locale: 'en_KE',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${postTitle} | PSMedia.ke`,
+      description: postExcerpt,
+      images: [imageUrl],
+      site: '@PSMedia_ke',
+    },
+    alternates: {
+      canonical: pageUrl,
+    },
+  }
+}
+
 export default async function PublicationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const payloadConfig = await config
@@ -79,6 +150,13 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
         : new URLSearchParams(new URL(url).search).get('v')
       return `https://www.youtube.com/embed/${videoId}`
     }
+
+    if (url.includes('facebook.com')) {
+      // Convert Facebook share URL to embeddable video URL
+      const encodedUrl = encodeURIComponent(url)
+      return `https://www.facebook.com/plugins/video.php?href=${encodedUrl}&show_text=false&width=auto`
+    }
+
     return url
   }
 
