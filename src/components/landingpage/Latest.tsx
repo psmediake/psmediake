@@ -57,7 +57,7 @@ export default function Latest({ posts }: { posts: Articles[] }) {
                     <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
                       <span>{post.publishedAt}</span>
                       <span>•</span>
-                      <span>{post.readTime}</span>
+                      <span>{post.readTime} min read</span>
                     </div>
 
                     <h3 className="text-sm font-bold text-gray-900 group-hover:text-[#0763fe] transition-colors duration-200 mb-2 leading-tight line-clamp-2">
