@@ -41,6 +41,9 @@ export const metadata = {
     images: ['/official.png'],
     site: '@PSMedia_ke',
   },
+  other: {
+    'google-adsense-account': 'ca-pub-1851725750266121',
+  },
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
