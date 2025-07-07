@@ -268,16 +268,7 @@ export default function Footer() {
                       href="mailto:info@psmedia.ke"
                       className="hover:text-[#0763fe] transition-colors duration-200"
                     >
-                      info@psmedia.ke
-                    </Link>
-                  </div>
-                  <div className="flex items-center justify-center sm:justify-end space-x-2 text-sm text-gray-400">
-                    <MdOutlineLocalPhone className="w-4 h-4" />
-                    <Link
-                      href="tel:+254700000000"
-                      className="hover:text-[#0763fe] transition-colors duration-200"
-                    >
-                      +254 700 000 000
+                      psmediake@gmail.com{' '}
                     </Link>
                   </div>
                 </div>
