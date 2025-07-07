@@ -7,6 +7,27 @@ export const Categories: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'slug', 'parent'],
   },
+  access: {
+    create: ({ req }) => !!req.user,
+    read: () => true,
+    update: (args) => {
+      const { req } = args
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const doc = (args as any).doc
+
+      return (
+        req.user?.role === 'admin' || req.user?.id === doc?.author || req.user?.role === 'editor'
+      )
+    },
+
+    delete: (args) => {
+      const { req } = args
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const doc = (args as any).doc
+
+      return req.user?.role === 'admin' || req.user?.id === doc?.author
+    },
+  },
   fields: [
     {
       name: 'name',

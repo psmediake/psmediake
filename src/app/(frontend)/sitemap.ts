@@ -3,10 +3,11 @@ export const dynamic = 'force-dynamic'
 import type { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [postsRes] = await Promise.all([
+  const [postsRes, areaRes] = await Promise.all([
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`, {
       next: { revalidate: 3600 },
     }),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`),
   ])
 
   if (!postsRes.ok) {
