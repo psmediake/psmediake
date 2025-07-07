@@ -1,33 +1,31 @@
 export const dynamic = 'force-dynamic'
+
 import type { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles?limit=1000&depth=3`, {
-    next: { revalidate: 3600 },
-  })
+  const [postsRes] = await Promise.all([
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`, {
+      next: { revalidate: 3600 },
+    }),
+  ])
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch articles')
+  if (!postsRes.ok) {
+    throw new Error(`Failed to fetch data`)
   }
 
-  const postsData = await res.json()
+  const postsData = await postsRes.json()
 
-  const posts: {
-    slug: string
-    category: { slug: string }
-    updatedAt?: string
-  }[] = postsData.docs
+  const posts: { slug: string; category: { slug: string }; updatedAt?: string }[] = postsData.docs
 
-  const validPosts = posts.filter((post) => post.category?.slug)
-
-  const postEntries: MetadataRoute.Sitemap = validPosts.map((post) => ({
+  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
+    type: 'posts',
     url: `${process.env.NEXT_PUBLIC_SITE_URL}/${post.category.slug}/${post.slug}`,
     lastModified: post.updatedAt || new Date().toISOString(),
     changeFrequency: 'monthly',
     priority: 0.7,
   }))
 
-  const uniqueCategories = Array.from(new Set(validPosts.map((post) => post.category.slug)))
+  const uniqueCategories = Array.from(new Set(posts.map((post) => post.category.slug)))
 
   const categoryEntries: MetadataRoute.Sitemap = uniqueCategories.map((categorySlug) => ({
     url: `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}`,
@@ -36,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }))
 
-  const staticPages: MetadataRoute.Sitemap = [
+  return [
     {
       url: `${process.env.NEXT_PUBLIC_SITE_URL}`,
       lastModified: new Date(),
@@ -47,43 +45,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/about-us`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.6,
+      priority: 0.8,
     },
     {
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/contact-us`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.6,
+      priority: 0.8,
     },
     {
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/advertise-with-us`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.6,
+      priority: 0.8,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/cookie-policy`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     {
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/latest-stories`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.7,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     {
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/team`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/cookie-policy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
+      priority: 0.8,
     },
     {
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/privacy-policy`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     {
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/terms-of-service`,
@@ -91,7 +89,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    ...postEntries,
+    ...categoryEntries,
   ]
-
-  return [...staticPages, ...categoryEntries, ...postEntries]
 }
