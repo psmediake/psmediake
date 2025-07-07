@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.css'
 import DualNavbar from '@/components/navigation/Navbar'
 import Footer from '@/components/navigation/Footer'
+import Script from 'next/script'
 
 // app/layout.js or app/layout.tsx
 export const metadata = {
@@ -51,6 +52,14 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1851725750266121"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <main>
           <DualNavbar />
