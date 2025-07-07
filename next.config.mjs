@@ -9,8 +9,8 @@ const nextConfig = {
       'images.unsplash.com',
       'cdn.payloadcms.com',
       'cdn.payloadcms.com',
-      'psmediake.vercel.app',
-      'facebook.com',
+      'psmedia.co.ke',
+      'psmediake-production.up.railway.app',
     ],
   },
 }
