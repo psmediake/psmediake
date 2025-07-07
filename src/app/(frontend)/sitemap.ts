@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles?depth=2`, {
     next: { revalidate: 3600 },
   })
 
@@ -11,16 +11,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postsData = await res.json()
 
-  const posts: { slug: string; category: { slug: string }; updatedAt?: string }[] = postsData.docs
+  const posts: {
+    slug: string
+    category: { slug?: string } | string
+    updatedAt?: string
+  }[] = postsData.docs
 
-  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${process.env.NEXT_PUBLIC_SITE_URL}/${post.category.slug}/${post.slug}`,
-    lastModified: post.updatedAt || new Date().toISOString(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }))
+  // Filter out any post without valid slug or category.slug
+  const validPosts = posts.filter(
+    (post) =>
+      typeof post.category === 'object' &&
+      post.category !== null &&
+      'slug' in post.category &&
+      typeof post.category.slug === 'string' &&
+      !!post.slug,
+  )
 
-  const uniqueCategories = Array.from(new Set(posts.map((post) => post.category.slug)))
+  const postEntries: MetadataRoute.Sitemap = validPosts.map((post) => {
+    const categorySlug =
+      typeof post.category === 'object' && post.category.slug ? post.category.slug : 'uncategorized' // fallback, just in case
+
+    return {
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}/${post.slug}`,
+      lastModified: post.updatedAt || new Date().toISOString(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    }
+  })
+
+  // Unique category slugs
+  const uniqueCategories = Array.from(
+    new Set(
+      validPosts
+        .map((post) =>
+          typeof post.category === 'object' && post.category.slug ? post.category.slug : null,
+        )
+        .filter(Boolean),
+    ),
+  )
 
   const categoryEntries: MetadataRoute.Sitemap = uniqueCategories.map((categorySlug) => ({
     url: `${process.env.NEXT_PUBLIC_SITE_URL}/${categorySlug}`,
