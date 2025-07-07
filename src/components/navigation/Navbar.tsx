@@ -16,6 +16,7 @@ export default function DualNavbar() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
+    { name: 'News', href: '/news' },
     { name: 'Politics', href: '/politics' },
     { name: 'Entertainment', href: '/entertainment' },
     { name: 'Sports', href: '/sports' },
