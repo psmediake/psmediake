@@ -14,7 +14,7 @@ import { Articles } from '@/types/types'
 export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
   const featured = posts.filter((post) => post.featured)
   const leftStories = posts.slice(0, 2)
-  const rightStories = posts.slice(3, 5)
+  const rightStories = posts.slice(2, 4)
 
   return (
     <section className="bg-gray-50 pb-8">
