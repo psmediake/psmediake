@@ -85,7 +85,6 @@ export async function generateMetadata({
     // 👉 Add base-level fields
     authors: [authorName],
     publisher: 'PSMedia',
-    themeColor: '#0763fe',
 
     // ✅ Fallback image for older crawlers
     icons: {
@@ -326,25 +325,8 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
                       key={latestPost.id}
                       className="group flex items-start space-x-3 hover:bg-gray-50 p-2 rounded-lg transition"
                     >
-                      <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                        {latestPost.image ? (
-                          <Image
-                            src={
-                              typeof latestPost.image === 'object' && latestPost.image.url
-                                ? latestPost.image.url
-                                : '/bg.jpg'
-                            }
-                            alt={latestPost.title}
-                            width={64}
-                            height={64}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-r from-[#003566] to-[#0077b6]"></div>
-                        )}
-                      </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-medium text-sm text-gray-900 group-hover:text-[#003566] transition line-clamp-2">
+                        <h4 className="font-medium text-sm text-gray-900 group-hover:text-[#003566] transition line-clamp-3">
                           {latestPost.title}
                         </h4>
                         <p className="text-xs text-gray-500 mt-1">
@@ -365,28 +347,28 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
                 <h3 className="font-semibold text-gray-900 mb-4">More Publications</h3>
                 <div className="space-y-3">
                   <Link
-                    href="/publications"
+                    href="/latest-stories"
                     className="block text-sm text-gray-700 hover:text-[#003566] transition"
                   >
-                    Browse All Publications
+                    Browse All Stories
                   </Link>
                   <Link
-                    href="/publications?category=research"
+                    href="/politics"
                     className="block text-sm text-gray-700 hover:text-[#003566] transition"
                   >
-                    Research Articles
+                    Politics
                   </Link>
                   <Link
-                    href="/publications?category=analysis"
+                    href="/news"
                     className="block text-sm text-gray-700 hover:text-[#003566] transition"
                   >
-                    Analysis & Insights
+                    News
                   </Link>
                   <Link
-                    href="/publications?category=opinion"
+                    href="/advertise-with-us"
                     className="block text-sm text-gray-700 hover:text-[#003566] transition"
                   >
-                    Opinion Pieces
+                    Advertise With Us
                   </Link>
                 </div>
               </div>
