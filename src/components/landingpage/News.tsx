@@ -58,7 +58,7 @@ export default function NewsCategoriesSection({ posts }: { posts: Articles[] }) 
                     ? article.category.slug
                     : typeof article.category === 'string' || typeof article.category === 'number'
                       ? article.category
-                      : 'news'
+                      : 'politics'
                 }/${article.slug}`}
                 className="block"
               >
@@ -88,7 +88,7 @@ export default function NewsCategoriesSection({ posts }: { posts: Articles[] }) 
                     <div className="absolute top-3 left-3">
                       <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-slate-700 text-xs font-medium rounded-full border border-white/20">
                         <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                        News
+                        Politics
                       </span>
                     </div>
 
