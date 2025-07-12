@@ -55,7 +55,7 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
                   className="bg-white border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
                 >
                   {/* Image */}
-                  <div className="relative h-32 overflow-hidden hidden md:block">
+                  <div className="relative h-36 overflow-hidden hidden md:block">
                     <Image
                       src={
                         typeof post.image === 'object' && post.image !== null && 'url' in post.image
@@ -66,7 +66,7 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
                       }
                       alt={post.title}
                       fill
-                      className="object-cover object-top"
+                      className="object-cover object-center"
                       loading="lazy"
                     />
                   </div>
@@ -264,7 +264,7 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
                   className="bg-white border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
                 >
                   {/* Image */}
-                  <div className="relative h-32 overflow-hidden hidden md:block">
+                  <div className="relative h-36 overflow-hidden hidden md:block">
                     <Image
                       src={
                         typeof post.image === 'object' && post.image !== null && 'url' in post.image
@@ -275,7 +275,7 @@ export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
                       }
                       alt={post.title}
                       fill
-                      className="object-cover object-top"
+                      className="object-cover object-center"
                       loading="lazy"
                     />
                   </div>
