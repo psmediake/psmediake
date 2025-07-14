@@ -13,8 +13,13 @@ import { Articles } from '@/types/types'
 
 export default function NewsHeroSection({ posts }: { posts: Articles[] }) {
   const featured = posts.filter((post) => post.featured)
-  const leftStories = posts.slice(0, 2)
-  const rightStories = posts.slice(2, 4)
+
+  // Remove featured posts from the pool for side stories
+  const nonFeatured = posts.filter((post) => !post.featured)
+
+  // Now slice clean non-featured posts for side stories
+  const leftStories = nonFeatured.slice(0, 2)
+  const rightStories = nonFeatured.slice(2, 4)
 
   return (
     <section className="bg-gray-50 pb-8">
