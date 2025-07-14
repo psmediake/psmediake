@@ -52,15 +52,13 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <head>
+      <body>
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1851725750266121"
           strategy="afterInteractive"
           crossOrigin="anonymous"
         />
-      </head>
-      <body>
         <main>
           <DualNavbar />
           {children}
