@@ -12,6 +12,7 @@ const nextConfig = {
       'psmedia.co.ke',
       'www.psmedia.co.ke',
       'psmediake.vercel.app',
+      'www.psmediake.vercel.app',
     ],
   },
 }
