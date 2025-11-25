@@ -34,9 +34,9 @@ export default function AboutSection() {
             </h1>
 
             <p className="text-gray-600 text-base leading-relaxed">
-              NewsHub is your trusted source for accurate, timely, and comprehensive news coverage.
-              We connect communities through powerful storytelling and unwavering commitment to
-              journalistic integrity.
+              PSMedia_ke is your trusted source for accurate, timely, and comprehensive news
+              coverage. We connect communities through powerful storytelling and unwavering
+              commitment to journalistic integrity.
             </p>
 
             {/* Features List */}

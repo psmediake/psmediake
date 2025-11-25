@@ -268,7 +268,8 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
                         : '/bg.jpg'
                     }
                     alt={post.title}
-                    fill
+                    width={800}
+                    height={600}
                     className="object-cover"
                     loading="lazy"
                   />
