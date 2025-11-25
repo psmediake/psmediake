@@ -10,6 +10,7 @@ const nextConfig = {
       'cdn.payloadcms.com',
       'cdn.payloadcms.com',
       'psmedia.co.ke',
+      'www.psmedia.co.ke',
       'psmediake.vercel.app',
     ],
   },
