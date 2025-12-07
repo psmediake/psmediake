@@ -53,7 +53,11 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Pages, Articles, Categories, Newsletter],
-  cors: [process.env.NEXT_CORS_URL ?? 'http://localhost:3000'],
+  cors: [
+    process.env.NEXT_PUBLIC_PAYLOAD_URL, // https://psmedia.co.ke
+    'https://www.psmedia.co.ke', // frontend origin
+    'http://localhost:3000',
+  ].filter(Boolean) as string[],
   serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
   // serverURL: 'http://localhost:3000',
   editor: lexicalEditor(),
