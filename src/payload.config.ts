@@ -53,7 +53,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Pages, Articles, Categories, Newsletter],
-  cors: [process.env.NEXT_PUBLIC_PAYLOAD_URL ?? 'http://localhost:3000'],
+  cors: [process.env.NEXT_CORS_URL ?? 'http://localhost:3000'],
   serverURL: process.env.NEXT_PUBLIC_PAYLOAD_URL,
   // serverURL: 'http://localhost:3000',
   editor: lexicalEditor(),
